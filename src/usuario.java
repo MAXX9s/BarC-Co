@@ -82,8 +82,8 @@ public class usuario {
 	public void Login(String nom,String con,usuario usuarioEncontrado ) {
 		usuario UsuarioEncontrado;
 		admin Nico=new admin("Nico","111",LocalDate.of(2005, 9, 25),2222,"french 2930","Administrador","nico@davinci.edu.ar");
-		encBarcos Maxi = new encBarcos("Maxi", "222",LocalDate.of(2005, 1, 22),3333,"french 2930", "Encargado de Barcos");
-		encEnvios Lucas = new encEnvios ("Lucas","333",LocalDate.of(2005, 1, 22),3333,"aura 1230", "Encargado de Envios");
+		encBarcos Maxi=new encBarcos("Maxi","123",LocalDate.of(2000, 4, 14),3333,"french 2930","Encargado de Barcos");
+		encEnvios Lucas=new encEnvios("Lucas","222",LocalDate.of(1999, 11, 10),4444,"french 2930","Encargado de Envios");
 		usuarios.add(new admin("Nico","111",LocalDate.of(2005, 9, 25),2222,"french 2930","Administrador","nico@davinci.edu.ar"));
 		usuarios.add( new usuario("Maxi","123",LocalDate.of(2000, 4, 14),3333,"french 2930","Encargado de Barcos"));
 		usuarios.add( new usuario("Lucas","222",LocalDate.of(1999, 11, 10),4444,"french 2930","Encargado de Envios"));
@@ -127,18 +127,45 @@ public class usuario {
 	    	UsuarioEncontrado=usuarioEncontrado;
 	    	Nico.Funcionesadmin();
 	    	
-	    	
+			
+		}
+	    if (usuarioEncontrado.getPuesto().equals("Encargado de Barcos")) {
+	    	UsuarioEncontrado=usuarioEncontrado;
+	     String[] menu= {
+	    		 "Registrar Barcos", "Tomar salida", "Ver Barcos","Calcular Tarifa","Salir"
+	     };
+	     int selec=0;
+			selec=JOptionPane.showOptionDialog(null, "Bienvenido administrador"+ getNombre() , "", 0, selec, null, menu, menu[0]);
+do {
+	switch (selec) {
+	case 0:
+		Maxi.registrarBarco();
+		break;
+
+	case 1:
+		Maxi.registrarsalidaBarco();
+		break;
+	case 2:
+		Maxi.verBarcos();
+		break;
+
+	case 3:
+		Maxi.calcularTarifaImpuesto();
+		
+		break;
+		
+	}
+	
+	
+	
+} while (selec!=4);
+			
+		}
+	    if (usuarioEncontrado.getPuesto().equals("Encargado de Envios")) {
+	    	UsuarioEncontrado=usuarioEncontrado;
+	    	Lucas.administrarEnvios();
 	    	
 			
-		}else if (usuarioEncontrado.getPuesto().equals("Encargado de Barcos")) {
-			UsuarioEncontrado=usuarioEncontrado;
-	    	Maxi.FuncionesencBarcos();
 		}
-		else if (usuarioEncontrado.getPuesto().equals("Encargado de Envios")) {
-			UsuarioEncontrado=usuarioEncontrado;
-	    	Lucas.FuncionesEnvios();
-	    	
-		}
-
 	
 	}}
