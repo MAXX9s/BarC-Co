@@ -9,8 +9,47 @@ public class encBarcos extends usuario {
 	public encBarcos(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
 			String puesto) {
 		super(nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
-		
+		// TODO Auto-generated constructor stub
 	}
+	
+	public void FuncionesencBarcos() {
+		String[] menu={
+			"Registrar Barco","Registrar Salida Barco ","Mostrar Barcos","Cerrar sesion"
+		};
+		String[] usuarios= {
+				"Lista","Modificar","Eliminar","Volver"
+		};
+	int selec=0;
+	int selec1=0;
+	do {
+		selec=JOptionPane.showOptionDialog(null, "Bienvenido administrador"+ getNombre() , "", 0, selec, null, menu, menu[0]);
+		
+		switch (selec) {
+				case 0:
+					registrarBarco();
+					break;
+
+				case 1:
+					registrarsalidaBarco();
+					break;
+				case 2:
+					verBarcos();
+					break;
+				case 3:
+					break;
+				}
+		
+			break;
+		
+		
+		
+	}while (selec!=3);
+	
+	}
+	
+
+		
+	
 	
 	public LinkedList<Barco> getBarcos() {
 		return barcos;
@@ -19,6 +58,7 @@ public class encBarcos extends usuario {
 	public void setBarcos(LinkedList<Barco> barcos) {
 		this.barcos = barcos;
 	}
+
 
 	public void registrarBarco(){
 		String nombre = validarCaracteres("Ingrese el nombre del barco");
