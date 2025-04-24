@@ -6,9 +6,20 @@ import javax.swing.JOptionPane;
 
 public class encBarcos extends usuario {
 	private LinkedList<Barco> barcos = new LinkedList<Barco>();
-	public encBarcos(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion) {
-		super(nombre, contraseña, fechanacimiento, telefono, direccion, direccion);
+	public encBarcos(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
+			String puesto) {
+		super(nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
+		
 	}
+	
+	public LinkedList<Barco> getBarcos() {
+		return barcos;
+	}
+
+	public void setBarcos(LinkedList<Barco> barcos) {
+		this.barcos = barcos;
+	}
+
 	public void registrarBarco(){
 		String nombre = validarCaracteres("Ingrese el nombre del barco");
 		String fechaEntrada = JOptionPane.showInputDialog("Ingrese La fecha de entrada del barco");
