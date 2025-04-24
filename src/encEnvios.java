@@ -4,24 +4,46 @@ import javax.swing.JOptionPane;
 
 public class encEnvios extends usuario {
 
-	private String nombre;
 
 	public encEnvios(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
-			String nombre2) {
-		super(nombre, contraseña, fechanacimiento, telefono, direccion, nombre2);
-		nombre = nombre2;
+			String puesto) {
+		super(nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	public encEnvios() {}
+	public void FuncionesEnvios() {
+		String[] menu={
+			"Administrar Envios","Ver Envios","Cerrar sesion"
+		};
+		String[] usuarios= {
+				"Lista","Modificar","Eliminar","Volver"
+		};
+	int selec=0;
+	int selec1=0;
+	do {
+		selec=JOptionPane.showOptionDialog(null, "Bienvenido administrador"+ getNombre() , "", 0, selec, null, menu, menu[0]);
+		
+		switch (selec) {
+				case 0:
+					administrarEnvios();
+					break;
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+				case 1:
+					verEnvios();
+					break;
+				case 2:
+					break;
+		
+		
+		
+		}
+	}while (selec!=2);
+	
 	}
 	
+	
+
 	public void administrarEnvios () {
 		
 		Envio envio = new Envio();
@@ -32,16 +54,13 @@ public class encEnvios extends usuario {
 		int elegido = 0;
 		boolean flag = false;
 		do {
-			elegido = JOptionPane.showOptionDialog(null, envio, nombre, elegido, elegido, null, elección, elección[0]);
+			elegido = JOptionPane.showOptionDialog(null, "Menu Administrador", getNombre(), 0, 0, null, elección, elección[0]);
 			switch (elegido) {
 			case 0:
-				String[] estados = new String [] {
-						"Pendiente de envío","En proceso","Entregado"
-					};
+				
 				JOptionPane.showMessageDialog(null, "A continuación registre todos los detalles del envío a realizar");
 				
 				envio.setDescripcion(JOptionPane.showInputDialog("Escriba una breve descripción indicando el contenido del container:"));
-				envio.setEstado((String) JOptionPane.showInputDialog(null, "Eliga el estado en el que se encuentra el envío:", null, getTelefono(), null, estados, estados[0]));
 				envio.setNumero_envio(Integer.parseInt(JOptionPane.showInputDialog("Asigenele un numero a este envío o escriba el número del envío en el caso de que ya exista")));
 				envio.setOrigen(JOptionPane.showInputDialog("Escriba el origen del envío:"));
 				envio.setDestino(JOptionPane.showInputDialog("Escriba el destino del envío"));
@@ -101,6 +120,12 @@ public class encEnvios extends usuario {
 			
 			
 		} while (elegido!=2);
+		
+		
+		
+	}
+	
+	public void verEnvios() {
 		
 		
 		

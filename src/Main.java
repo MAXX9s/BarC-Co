@@ -10,7 +10,8 @@ public class Main {
 		usuario max = new usuario("Maxi", "123", LocalDate.of(2005, 9, 25), 2222, "french 2930", "");
 		admin nico = new admin("Nico", "111", LocalDate.of(2005, 9, 25), 2222, "french 2930", "nico@davinci.edu.ar", "Admin");
 		usuario lucas = new usuario("Luca", "123", LocalDate.of(2005, 9, 25), 2222, "french 2930", "");
-
+		encEnvios encenvio = new encEnvios ("", null, null, 0, null, null);
+		
 		String[] menu = {
 			"Login", "Salir"
 		};
@@ -37,6 +38,7 @@ public class Main {
 			switch (selec) {
 				case 0:
 					max.Login("", "", null);
+					
 					break;
 				case 1:
 					JOptionPane.showMessageDialog(null, "Que tengas un Buen dia!!!  :)");
