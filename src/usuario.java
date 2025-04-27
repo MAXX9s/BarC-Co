@@ -131,35 +131,10 @@ public class usuario {
 		}
 	    if (usuarioEncontrado.getPuesto().equals("Encargado de Barcos")) {
 	    	UsuarioEncontrado=usuarioEncontrado;
-	     String[] menu= {
-	    		 "Registrar Barcos", "Tomar salida", "Ver Barcos","Calcular Tarifa","Salir"
-	     };
-	     int selec=0;
-			selec=JOptionPane.showOptionDialog(null, "Bienvenido administrador"+ getNombre() , "", 0, selec, null, menu, menu[0]);
-do {
-	switch (selec) {
-	case 0:
-		Maxi.registrarBarco();
-		break;
+	    	Maxi.FuncionesencBarcos();
 
-	case 1:
-		Maxi.registrarsalidaBarco();
-		break;
-	case 2:
-		Maxi.verBarcos();
-		break;
-
-	case 3:
-		Maxi.calcularTarifaImpuesto();
-		
-		break;
-		
-	}
 	
 	
-	
-} while (selec!=4);
-			
 		}
 	    if (usuarioEncontrado.getPuesto().equals("Encargado de Envios")) {
 	    	UsuarioEncontrado=usuarioEncontrado;

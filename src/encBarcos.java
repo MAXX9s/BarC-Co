@@ -13,38 +13,33 @@ public class encBarcos extends usuario {
 	}
 	
 	public void FuncionesencBarcos() {
-		String[] menu={
-			"Registrar Barco","Registrar Salida Barco ","Mostrar Barcos","Cerrar sesion"
-		};
-		String[] usuarios= {
-				"Lista","Modificar","Eliminar","Volver"
-		};
-	int selec=0;
-	int selec1=0;
-	do {
-		selec=JOptionPane.showOptionDialog(null, "Bienvenido administrador"+ getNombre() , "", 0, selec, null, menu, menu[0]);
-		
-		switch (selec) {
-				case 0:
-					registrarBarco();
-					break;
+	    String[] menu = {
+	        "Registrar Barco", "Registrar Salida Barco", "Mostrar Barcos","Calcular Tarifa e Impuesto","Cerrar sesión"
+	    };
 
-				case 1:
-					registrarsalidaBarco();
-					break;
-				case 2:
-					verBarcos();
-					break;
-				case 3:
-					break;
-				}
-		
-			break;
-		
-		
-		
-	}while (selec!=3);
-	
+	    int selec = 0;
+	    do {
+	    	  selec = JOptionPane.showOptionDialog(null, "Bienvenido encargado de barcos " + getNombre(), "", 0, 0, null, menu, menu[0]);
+
+	        switch (selec) {
+	            case 0:
+	                registrarBarco();
+	                break;
+	            case 1:
+	                registrarsalidaBarco();
+	                break;
+	            case 2:
+	                verBarcos();
+	                break;
+	            case 3:
+	            	calcularTarifaImpuesto();
+	            	break;
+	            case 4:
+	                JOptionPane.showMessageDialog(null, "Hasta luego, que termine bien su día!!");
+	                break;
+	        
+	        }
+	    } while (selec != 4);
 	}
 	
 
@@ -67,7 +62,7 @@ public class encBarcos extends usuario {
 		int capacidadcarga = validarNumeros("Ingrese la capacidad de carga");
 		Barco nuevoBarco = new Barco(nombre,fechaEntrada,horaEntrada,capacidadcarga);
 		barcos.add(nuevoBarco);
-		JOptionPane.showMessageDialog(null, "Nombre"+nombre+"\n"+"Hora de Entrada"+horaEntrada+"\n"+"Capacidad de carga:"+capacidadcarga);
+		JOptionPane.showMessageDialog(null, "Nombre: "+nombre+"\n"+"Fecha de Entrada: "+fechaEntrada+"\n"+"Hora de Entrada: "+horaEntrada+"\n"+"Capacidad de carga: "+capacidadcarga);
 	}
 	public void registrarsalidaBarco(){
 		String nombre = validarCaracteres("Ingrese el nombre del barco que va a salir:");
@@ -87,10 +82,34 @@ public class encBarcos extends usuario {
 			String fechaSalida = JOptionPane.showInputDialog("Ingrese La fecha de Salida del barco");
 		    String horaSalida = JOptionPane.showInputDialog("Ingrese la hora de salida del barco");
 		    barcoEncontrado.setHoraSalida(horaSalida);
+		    barcoEncontrado.setFechaSalida(fechaSalida);
 	}
 	public void calcularTarifaImpuesto(){
+		    String nombre = validarCaracteres("Ingrese el nombre del barco al que desea asignar tarifa e impuesto:");
+		    Barco barcoEncontrado = null;
+		    
+		    for (Barco b : barcos) {
+		        if (b.getNombre().equalsIgnoreCase(nombre)) {
+		            barcoEncontrado = b;
+		            break;
+		        }
+		    }
+		    
+		    if (barcoEncontrado == null) {
+		        JOptionPane.showMessageDialog(null, "No se encontró un barco con ese nombre.");
+		        return;
+		    }
+		    
+		    double tarifa = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la tarifa:"));  
+		    double impuesto = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el impuesto:"));;
+		    
+		    barcoEncontrado.setTarifa(tarifa);
+		    barcoEncontrado.setImpuesto(impuesto);
+		    
+		    JOptionPane.showMessageDialog(null, "Tarifa e impuesto asignados exitosamente al barco " + nombre+"\n"+"Tarifa: "+tarifa+"\n"+"Impuesto: "+impuesto);
+		}
+		
 	
-	}
 	public void verBarcos() {
 		if (barcos.isEmpty()) {
 	        JOptionPane.showMessageDialog(null, "No hay barcos registrados.");
@@ -99,7 +118,9 @@ public class encBarcos extends usuario {
 
 	    for (Barco b : barcos) {
 	        String datos = "Nombre: " + b.getNombre() + "\n"
-	                     + "Hora de entrada: " + b.getHoraEntrada() + "\n"
+	        		 	 +"Fecha de entrada: " + b.getFechaEntrada()+ "\n"
+	                     + "Hora de entrada: " + b.getHoraEntrada()+ "\n"
+	                     +"Fecha de Salida: " + b.getFechaSalida()+ "\n"
 	                     + "Hora de salida: " + (b.getHoraSalida() != null ? b.getHoraSalida() : "No registrada") + "\n"
 	                     + "Capacidad de carga: " + b.getCapacidadCarga() + "\n";
 
