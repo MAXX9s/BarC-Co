@@ -27,7 +27,7 @@ public class admin extends usuario{
 			"Soporte de Usuarios","Lista de Barcos","Lista de Envios","Cerrar sesion"
 		};
 		String[] usuarios= {
-				"Lista","Modificar","Eliminar","Volver"
+				"Lista","Modificar","Eliminar","Crear Usuario","Volver"
 		};
 	int selec=0;
 	int selec1=0;
@@ -50,11 +50,15 @@ public class admin extends usuario{
 					JOptionPane.showMessageDialog(null, "Que usuario desea Eliminar?: \n .....");
 				
 					break;
-					
+
 				case 3:
+					JOptionPane.showMessageDialog(null, "Creando Usuario...");
+					
+					break;
+				case 4:
 					break;
 				}
-			} while (selec1!=3);
+			} while (selec1!=4);
 			break;
 			
 		case 1:
