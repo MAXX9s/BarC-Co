@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 
 public class Envio {
 	
@@ -6,14 +7,16 @@ public class Envio {
 	private int numero_envio;
 	private String origen;
 	private String destino;
+	private LinkedList<Envio>listaenvios;
 	
-	public Envio(String descripcion, String estado, int numero_envio, String origen, String destino) {
+	public Envio(String descripcion, String estado, int numero_envio, String origen, String destino,LinkedList<Envio> listaenvios) {
 		super();
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.numero_envio = numero_envio;
 		this.origen = origen;
 		this.destino = destino;
+		this.listaenvios = listaenvios;
 	}
 	
 	public Envio () {}
@@ -57,6 +60,22 @@ public class Envio {
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
+
+	public LinkedList<Envio> getListaenvios() {
+		return listaenvios;
+	}
+
+	public void setListaenvios(LinkedList<Envio> listaenvios) {
+		this.listaenvios = listaenvios;
+	}
+
+	@Override
+	public String toString() {
+		return " \n Envio [Descripcion:" + descripcion + ", Estado actual:" + estado + ", Número de envío:" + numero_envio
+				+ ", Origen:" + origen + ", Destino:" + destino +  "]";
+	}
+	
+	
 	
 	
 	

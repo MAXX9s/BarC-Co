@@ -163,7 +163,7 @@ do {
 		}
 	    if (usuarioEncontrado.getPuesto().equals("Encargado de Envios")) {
 	    	UsuarioEncontrado=usuarioEncontrado;
-	    	Lucas.administrarEnvios();
+	    	Lucas.FuncionesEnvios();
 	    	
 			
 		}
