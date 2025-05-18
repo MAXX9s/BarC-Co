@@ -1,3 +1,4 @@
+package BLL;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
@@ -7,10 +8,11 @@ public class encEnvios extends usuario {
 
 	private LinkedList<Envio> listaEnvios = new LinkedList<>();
 
-	public encEnvios(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
-			String puesto) {
-		super(nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
-		// TODO Auto-generated constructor stub
+	
+	
+
+	public encEnvios(int id, String nombre, String contraseña, LocalDate fecha,String direccion, int telefono,
+			 String puesto) {
 	}
 
 	public encEnvios() {}

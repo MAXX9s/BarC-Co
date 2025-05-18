@@ -1,3 +1,4 @@
+package BLL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
@@ -6,12 +7,12 @@ import javax.swing.JOptionPane;
 
 public class encBarcos extends usuario {
 	private LinkedList<Barco> barcos = new LinkedList<Barco>();
-	public encBarcos(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
+	public encBarcos(int id, String nombre, String contraseña, LocalDate fecha, String direccion, int telefono,
 			String puesto) {
-		super(nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
 	public void FuncionesencBarcos() {
 	    String[] menu = {
 	        "Registrar Barco", "Registrar Salida Barco", "Mostrar Barcos","Calcular Tarifa e Impuesto","Cerrar sesión"

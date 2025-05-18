@@ -1,7 +1,12 @@
+package GUI;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import BLL.admin;
+import BLL.encEnvios;
+import BLL.usuario;
 
 public class Main {
 

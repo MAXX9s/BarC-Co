@@ -1,9 +1,11 @@
+package BLL;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
 public class usuario {
+	   protected int id;
 	private String nombre;
 	private String contraseña;
 	private LocalDate fechanacimiento;
@@ -12,17 +14,19 @@ public class usuario {
 	private String puesto;
 	LinkedList<usuario> usuarios = new LinkedList<usuario>();
 	
-	public usuario(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion, String puesto
-			) {
+	public usuario(int id, String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
+			String puesto, LinkedList<usuario> usuarios) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.contraseña = contraseña;
 		this.fechanacimiento = fechanacimiento;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		this.puesto=puesto;
-		
+		this.puesto = puesto;
+		this.usuarios = usuarios;
 	}
+	
 	public usuario() {}
 	public String getNombre() {
 		return nombre;
@@ -81,12 +85,12 @@ public class usuario {
 	
 	public void Login(String nom,String con,usuario usuarioEncontrado ) {
 		usuario UsuarioEncontrado;
-		admin Nico=new admin("Nico","111",LocalDate.of(2005, 9, 25),2222,"french 2930","Administrador","nico@davinci.edu.ar");
-		encBarcos Maxi=new encBarcos("Maxi","123",LocalDate.of(2000, 4, 14),3333,"french 2930","Encargado de Barcos");
-		encEnvios Lucas=new encEnvios("Lucas","222",LocalDate.of(1999, 11, 10),4444,"french 2930","Encargado de Envios");
+		admin Nico=new admin("Nico","111",LocalDate.of(2005, 9, 25),22, "french 2930","Administrador","nico@davinci.edu.ar");
+		encBarcos Maxi=new encBarcos(id, "Maxi","123",LocalDate.of(2000, 4, 14),"french 2930",221, "Encargado de Barcos");
+		encEnvios Lucas=new encEnvios(id,"Lucas","222",LocalDate.of(1999, 11, 10),"french 2930",222,"Encargado de Envios");
 		usuarios.add(new admin("Nico","111",LocalDate.of(2005, 9, 25),2222,"french 2930","Administrador","nico@davinci.edu.ar"));
-		usuarios.add( new usuario("Maxi","123",LocalDate.of(2000, 4, 14),3333,"french 2930","Encargado de Barcos"));
-		usuarios.add( new usuario("Lucas","222",LocalDate.of(1999, 11, 10),4444,"french 2930","Encargado de Envios"));
+		usuarios.add(new usuario(id, "Maxi","123",LocalDate.of(2000, 4, 14),3333,"french 2930","Encargado de Barcos", usuarios));
+		usuarios.add(new usuario(id,"Lucas","222",LocalDate.of(1999, 11, 10),4444,"french 2930","Encargado de Envios",usuarios ));
 
 		do {
 	        nom = JOptionPane.showInputDialog("Ingrese su nombre de usuario:");
