@@ -9,7 +9,7 @@ public class admin extends usuario{
 
 	public admin(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
 			String puesto, String mail) {
-		super(nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
+		super(telefono,nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
 		this.mail = mail;
 	}
 
@@ -75,6 +75,7 @@ public class admin extends usuario{
 			JOptionPane.showMessageDialog(null,"Hasta luego que termine bien su dia!!");
 			
 			break;
+		
 		}
 		
 		

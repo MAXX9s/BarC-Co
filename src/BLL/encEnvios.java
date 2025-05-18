@@ -14,7 +14,7 @@ public class encEnvios extends usuario {
 	public encEnvios(int id, String nombre, String contraseña, LocalDate fecha,String direccion, int telefono,
 			 String puesto) {
 	}
-
+	
 	public encEnvios() {}
 	
 	public LinkedList<Envio> getListaEnvios() {

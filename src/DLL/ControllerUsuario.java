@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
+import javax.swing.JOptionPane;
+
 import BLL.encEnvios;
 import BLL.encBarcos;
 import BLL.usuario;
@@ -18,6 +20,8 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 
     @Override
     public T login(String nombre, String contraseña) {
+    	nombre=JOptionPane.showInputDialog("Ingresa el nombre");
+    	contraseña=JOptionPane.showInputDialog("Ingrese la contraseña");
         T usuario = null;
         try {
             PreparedStatement stmt = con.prepareStatement(
@@ -51,18 +55,19 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 
                // LocalDate fecha = Date.valueOf(null) rs.getDate("Fecha de nacimiento");
 
-                switch (Puesto.toLowerCase()) {
-                    case "Encargado de Barcos":
-                    	usuario = (T) new encBarcos(id, Nombre, Contraseña, Fecha, Direccion,Telefono,Puesto);
-                        
-                    case "Encargado de Envios":
-                    	usuario = (T) new encEnvios(id,Nombre, Contraseña,Fecha,Direccion,Telefono,Puesto);
-                        break;
-                        
-                    default:
-                        System.out.println("Tipo de puesto desconocido: " + Puesto);
-                        break;
-                }
+                switch (Puesto.trim().toLowerCase()) {
+                case "encargado de barcos":
+                    usuario = (T) new encBarcos(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
+                    break;
+
+                case "encargado de envios":
+                    usuario = (T) new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
+                    break;
+
+                default:
+                    System.out.println("Tipo de puesto desconocido: '" + Puesto + "'");
+                    break;
+            }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +83,7 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
             );
             statement.setString(1, usuario.getNombre());
             statement.setString(2, usuario.getContraseña());
-            statement.setDate(3, usuario.getFechanacimiento());
+            statement.setDate(3, java.sql.Date.valueOf(usuario.getFechanacimiento()));
             statement.setString(4, usuario.getDireccion());
             statement.setInt(5, usuario.getTelefono());
             statement.setString(6, usuario.getPuesto());
