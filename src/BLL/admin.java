@@ -1,14 +1,20 @@
 package BLL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
+import DLL.Conexion;
+import DLL.ControllerUsuario;
+
 public class admin extends usuario {
     private String mail;
+    private static Connection con = Conexion.getInstance().getConnection();
 
     public admin(int id, String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
-                 String puesto, String mail) {
+                 String puesto) {
         super(id, nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
         this.mail = mail;
     }
@@ -22,8 +28,28 @@ public class admin extends usuario {
 		this.mail = mail;
 	}
 
-	
-	
+	public void agregarUsuario(usuario usuario) {
+	    try {
+	        PreparedStatement statement = con.prepareStatement(
+	            "INSERT INTO usuario (Nombre, Contraseña, `Fecha de nacimiento`, Direccion, Telefono, Puesto) " +
+	            "VALUES (?, ?, ?, ?, ?, ?)"
+	        );
+
+	        statement.setString(1, usuario.getNombre());
+	        statement.setString(2, usuario.getContraseña());
+	        statement.setDate(3, java.sql.Date.valueOf(usuario.getFechanacimiento()));
+	        statement.setString(4, usuario.getDireccion());
+	        statement.setInt(5, usuario.getTelefono());
+	        statement.setString(6, usuario.getPuesto());
+
+	        int filas = statement.executeUpdate();
+	        if (filas > 0) {
+	            System.out.println("Usuario agregado correctamente.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 	public void Funcionesadmin() {
 		String[] menu={
 			"Soporte de Usuarios","Lista de Barcos","Lista de Envios","Cerrar sesion"
@@ -54,8 +80,18 @@ public class admin extends usuario {
 					break;
 
 				case 3:
-					JOptionPane.showMessageDialog(null, "Creando Usuario...");
+					String nombre = JOptionPane.showInputDialog("Ingresa el Nombre");
+					String contra = JOptionPane.showInputDialog("Ingresa la Contraseña");
+					String fecha = JOptionPane.showInputDialog("Ingrese la fecha de nacimiento (YYYY-MM-DD)");
+					int numero = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de telefono"));
+					String direc = JOptionPane.showInputDialog("Ingrese la dirección");
+					String puesto = JOptionPane.showInputDialog("Ingrese el puesto");
+
 					
+					LocalDate fechaNac = LocalDate.parse(fecha);
+
+					
+					agregarUsuario(new usuario(numero,nombre, contra, fechaNac, numero, direc, puesto));
 					break;
 				case 4:
 					break;

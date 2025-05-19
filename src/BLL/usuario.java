@@ -79,72 +79,8 @@ public class usuario {
 		return "usuario [nombre=" + nombre + ", contraseña=" + contraseña + ", fechanacimiento=" + fechanacimiento
 				+ ", telefono=" + telefono + ", direccion=" + direccion + "]";
 	}
+}
 	
 	
 	
 	
-	public void Loin(String nom,String con,usuario usuarioEncontrado ) {
-		usuario UsuarioEncontrado;
-		admin Nico=new admin(id,"Nico","111",LocalDate.of(2005, 9, 25),22, "french 2930","Administrador","nico@davinci.edu.ar");
-		encBarcos Maxi=new encBarcos(id, "Maxi","123",LocalDate.of(2000, 4, 14),"french 2930",221, "Encargado de Barcos");
-		encEnvios Lucas=new encEnvios(id,"Lucas","222",LocalDate.of(1999, 11, 10),"french 2930",222,"Encargado de Envios");
-		usuarios.add(new admin(id,"Nico","111",LocalDate.of(2005, 9, 25),2222,"french 2930","Administrador","nico@davinci.edu.ar"));
-		usuarios.add(new usuario(id, "Maxi","123",LocalDate.of(2000, 4, 14),3333,"french 2930","Encargado de Barcos"));
-		usuarios.add(new usuario(id,"Lucas","222",LocalDate.of(1999, 11, 10),4444,"french 2930","Encargado de Envios" ));
-
-		do {
-	        nom = JOptionPane.showInputDialog("Ingrese su nombre de usuario:");
-
-	        if (nom == null || nom.isEmpty()) {
-	            JOptionPane.showMessageDialog(null, "Debe ingresar un nombre.");
-	            
-	        }
-
-	        for (usuario u : usuarios) {
-	            if (u.getNombre().equals(nom)) {
-	                usuarioEncontrado = u;
-	                break;
-	            }
-	        }
-
-	        if (usuarioEncontrado == null) {
-	            JOptionPane.showMessageDialog(null, "El nombre " + nom + " no pertenece a ningún usuario registrado.");
-	        }
-
-	    } while (usuarioEncontrado == null);
-
-
-	    do {
-	        con = JOptionPane.showInputDialog("Usuario " + nom + ", ingrese su contraseña:");
-
-	        if (con == null || con.isEmpty()) {
-	            JOptionPane.showMessageDialog(null, "Debe ingresar una contraseña.");
-	        } else if (!con.equals(usuarioEncontrado.getContraseña())) {
-	            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
-	        }
-
-	    } while (!con.equals(usuarioEncontrado.getContraseña()));
-
-	   
-	    JOptionPane.showMessageDialog(null, "Bienvenido " + usuarioEncontrado.getNombre() + " - " + usuarioEncontrado.getPuesto());
-	    if (usuarioEncontrado.getPuesto().equals("Administrador")) {
-	    	UsuarioEncontrado=usuarioEncontrado;
-	    	Nico.Funcionesadmin();
-	    	
-			
-		}
-	    if (usuarioEncontrado.getPuesto().equals("Encargado de Barcos")) {
-	    	UsuarioEncontrado=usuarioEncontrado;
-	    	Maxi.FuncionesencBarcos();
-
-	
-	
-		}
-	    if (usuarioEncontrado.getPuesto().equals("Encargado de Envios")) {
-	    	UsuarioEncontrado=usuarioEncontrado;
-	    	Lucas.FuncionesEnvios();
-	    	
-			
-		}
-	
-	}}

@@ -1,4 +1,5 @@
 	package DLL;
+	import BLL.admin;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -64,6 +65,10 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
                 case "encargado de envios":
                     usuario = (T) new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
                 	((encEnvios) usuario).FuncionesEnvios();
+                    break;
+                case "administrador":
+                    usuario = (T) new admin(id, Nombre, Contraseña, Fecha, Telefono, Direccion, Puesto);
+                	((admin) usuario).Funcionesadmin();
                     break;
 
                     
