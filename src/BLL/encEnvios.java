@@ -5,15 +5,12 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class encEnvios extends usuario {
+    private LinkedList<Envio> listaEnvios = new LinkedList<>();
 
-	private LinkedList<Envio> listaEnvios = new LinkedList<>();
+    public encEnvios(int id, String nombre, String contraseña, LocalDate fechaNacimiento, String direccion, int telefono, String puesto) {
+        super(id, nombre, contraseña, fechaNacimiento, telefono, direccion, puesto);
+    }
 
-	
-	
-
-	public encEnvios(int id, String nombre, String contraseña, LocalDate fecha,String direccion, int telefono,
-			 String puesto) {
-	}
 	
 	public encEnvios() {}
 	

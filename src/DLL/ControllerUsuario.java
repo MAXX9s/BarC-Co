@@ -58,12 +58,15 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
                 switch (Puesto.trim().toLowerCase()) {
                 case "encargado de barcos":
                     usuario = (T) new encBarcos(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
+                    ((encBarcos) usuario).FuncionesencBarcos();
                     break;
 
                 case "encargado de envios":
                     usuario = (T) new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
+                	((encEnvios) usuario).FuncionesEnvios();
                     break;
 
+                    
                 default:
                     System.out.println("Tipo de puesto desconocido: '" + Puesto + "'");
                     break;

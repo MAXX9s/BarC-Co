@@ -4,14 +4,15 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-public class admin extends usuario{
-	private String mail;
+public class admin extends usuario {
+    private String mail;
 
-	public admin(String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
-			String puesto, String mail) {
-		super(telefono,nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
-		this.mail = mail;
-	}
+    public admin(int id, String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
+                 String puesto, String mail) {
+        super(id, nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
+        this.mail = mail;
+    }
+
 
 	public String getMail() {
 		return mail;
