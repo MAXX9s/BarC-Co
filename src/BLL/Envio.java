@@ -9,14 +9,16 @@ public class Envio {
 	private String origen;
 	private String destino;
 	private LinkedList<Envio>listaenvios;
+	private int FK_encv;
 	
-	public Envio(String descripcion, String estado, int numero_envio, String origen, String destino,LinkedList<Envio> listaenvios) {
+	public Envio(String descripcion, String estado, String origen, String destino,int FK_encv) {
 		super();
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.numero_envio = numero_envio;
 		this.origen = origen;
 		this.destino = destino;
+		this.FK_encv=FK_encv;
 		this.listaenvios = listaenvios;
 	}
 	
@@ -60,6 +62,19 @@ public class Envio {
 
 	public void setDestino(String destino) {
 		this.destino = destino;
+		
+	}
+	
+	
+	
+	
+
+	public int getFK_encv() {
+		return FK_encv;
+	}
+
+	public void setFK_encv(int fK_encv) {
+		FK_encv = fK_encv;
 	}
 
 	public LinkedList<Envio> getListaenvios() {

@@ -1,11 +1,18 @@
 package BLL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
+import DLL.Conexion;
+
 public class encEnvios extends usuario {
     private LinkedList<Envio> listaEnvios = new LinkedList<>();
+    private static Connection con = Conexion.getInstance().getConnection();
+
 
     public encEnvios(int id, String nombre, String contraseña, LocalDate fechaNacimiento, String direccion, int telefono, String puesto) {
         super(id, nombre, contraseña, fechaNacimiento, telefono, direccion, puesto);
@@ -50,6 +57,29 @@ public class encEnvios extends usuario {
 	}while (selec!=2);
 	
 	}
+	public void agregarEnvio(Envio envio) {
+	    try {
+	        PreparedStatement statement = con.prepareStatement(
+	            "INSERT INTO envio (Descripcion, Estado, Origen, Destino,FK_Encargado_de_Envios) " +
+	            "VALUES (?, ?, ?, ?,?)"
+	        );
+
+	        statement.setString(1, envio.getDescripcion());
+	        statement.setString(2, envio.getEstado());
+	        statement.setString(3, envio.getOrigen());
+	        statement.setString(4, envio.getDestino());
+	        statement.setInt(5, envio.getFK_encv());
+
+	       ;
+
+	        int filas = statement.executeUpdate();
+	        if (filas > 0) {
+	            System.out.println("Enivo Agregado correctamente.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 	
 	
 
@@ -69,28 +99,46 @@ public class encEnvios extends usuario {
 				
 				JOptionPane.showMessageDialog(null, "A continuación registre todos los detalles del envío a realizar");
 				
-				envio.setDescripcion(JOptionPane.showInputDialog("Escriba una breve descripción indicando el contenido del container:"));
-				envio.setNumero_envio(Integer.parseInt(JOptionPane.showInputDialog("Asigenele un numero a este envío o escriba el número del envío en el caso de que ya exista")));
-				envio.setOrigen(JOptionPane.showInputDialog("Escriba el origen del envío:"));
-				envio.setDestino(JOptionPane.showInputDialog("Escriba el destino del envío"));
+				String descripcion=JOptionPane.showInputDialog("Escriba una breve descripción indicando el contenido del container:");
+				String origen =JOptionPane.showInputDialog("Escriba el origen del envío:");
+				String destino=JOptionPane.showInputDialog("Escriba el destino del envío");
+				int fk=Integer.parseInt(JOptionPane.showInputDialog("Ingrese su numero de ID"));
+
 				String [] estados = new String [] {
 						"Pendiente de Envio","En proceso","Entregado"	
 					};
 				String estadoactual;
-				envio.setEstado((String) JOptionPane.showInputDialog(null, "Eliga el estado actual en el que se encuentra el envío registrado:", "Estado actual del envío", 0, null, estados, estados[0]));
+				estadoactual=((String) JOptionPane.showInputDialog(null, "Eliga el estado actual en el que se encuentra el envío registrado:", "Estado actual del envío", 0, null, estados, estados[0]));
 				flag = true;
-
+				
+				
+				/*try {
+				    PreparedStatement statement = con.prepareStatement(
+				        "SELECT `FK_Encargado de Envios` FROM `envio`"
+				    );
+				    
+				    ResultSet rs = statement.executeQuery();
+				    while (rs.next()) {
+				        int fk = rs.getInt(1); 
+				     
+				    }
+				    
+				} catch (Exception e) {
+				    e.printStackTrace();
+				}
+*/
 				
 				  JOptionPane.showMessageDialog(null, "EL ENVÍO FUE REGISTRADO CORRECTAMENTE: \n"
-						+ "Descripción" + envio.getDescripcion() + " \n Número de envío:" + envio.getNumero_envio()
-						 + " \n Origen:" + envio.getOrigen() + "\n Destino:" + envio.getDestino() + "\n Estado actual:" + envio.getEstado());
+						+ "Descripción" + descripcion 
+						 + " \n Origen:" + origen + "\n Destino:" + destino + "\n Estado actual:" + estadoactual);
 				  
-				  listaEnvios.add(envio);
+				  agregarEnvio(new Envio(descripcion,estadoactual, origen, destino, fk));
 
 				  
 				  
-				  
-				break;
+				  break;
+				 
+				
 			case 1:
 				if (flag) {
 					int numeroeleccion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del envío al que le desea cambiar el estado:"));
