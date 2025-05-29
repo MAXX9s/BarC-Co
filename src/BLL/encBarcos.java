@@ -9,7 +9,8 @@ public class encBarcos extends usuario {
 	private LinkedList<Barco> barcos = new LinkedList<Barco>();
 	public encBarcos(int id, String nombre, String contraseña, LocalDate fecha, String direccion, int telefono,
 			String puesto) {
-		// TODO Auto-generated constructor stub
+        super(id, nombre, contraseña, fecha, telefono, direccion, puesto);
+
 	}
 
 

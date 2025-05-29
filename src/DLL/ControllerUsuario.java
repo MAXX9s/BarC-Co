@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -67,7 +68,7 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
                 	((encEnvios) usuario).FuncionesEnvios();
                     break;
                 case "administrador":
-                    usuario = (T) new admin(id, Nombre, Contraseña, Fecha, Telefono, Direccion, Puesto);
+                    usuario = (T) new admin(id, Nombre, Contraseña, Fecha, Direccion,Telefono, Puesto);
                 	((admin) usuario).Funcionesadmin();
                     break;
 
@@ -106,37 +107,47 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
         }
     }
 
-    @Override
-    public LinkedList<usuario> mostrarUsuarios() {
+	public static LinkedList<usuario> mostrarUsuarios2() {
         LinkedList<usuario> usuarios = new LinkedList<>();
         try {
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM usuario");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("ID_Usuario");
                 String Nombre = rs.getString("Nombre");
                 String Contraseña = rs.getString("Contraseña");
-                LocalDate Fecha = LocalDate.now();
+                LocalDate Fecha = rs.getDate("Fecha de nacimiento").toLocalDate();                
                 String Direccion = rs.getString("Direccion");
                 int Telefono = rs.getInt("Telefono");
                 String Puesto = rs.getString("Puesto");
 
-                switch (Puesto.toLowerCase()) {
-                    case "alumno":
-                    	usuarios.add((T) new encBarcos(id, Nombre, Contraseña, Fecha, Direccion,Telefono,Puesto));
-                        break;
-                    case "profesor":
-                     	usuarios.add((T) new encEnvios(id, Nombre, Contraseña, Fecha, Direccion,Telefono,Puesto));
-                        break;
-                    default:
-                        System.out.println("Tipo desconocido: " + Puesto);
-                        break;
-                }
+
+	            switch (Puesto.toLowerCase()) {
+                case "encargado de barcos":
+                	usuarios.add((usuario) new encBarcos(id, Nombre, Contraseña, Fecha, Direccion,Telefono,Puesto));
+                    break;
+                case "encargado de envios":
+                 	usuarios.add((usuario) new encEnvios(id, Nombre, Contraseña, Fecha, Direccion,Telefono,Puesto));
+                    break;
+                case "administrador":
+                 	usuarios.add((usuario) new admin(id, Nombre, Contraseña, Fecha,Direccion,Telefono,Puesto));
+                    break;
+                default:
+                    System.out.println("Tipo desconocido: " + Puesto);
+                    break;}
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return usuarios;
     }
+
+	@Override
+	public List<usuario> mostrarUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

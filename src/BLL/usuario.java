@@ -28,6 +28,15 @@ public class usuario {
 	}
 	
 	public usuario() {}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -76,8 +85,8 @@ public class usuario {
 	
 	@Override
 	public String toString() {
-		return "usuario [nombre=" + nombre + ", contraseña=" + contraseña + ", fechanacimiento=" + fechanacimiento
-				+ ", telefono=" + telefono + ", direccion=" + direccion + "]";
+		return "usuario N° "+id + "[nombre=" + nombre + ", contraseña=" + contraseña + ", fechanacimiento=" + fechanacimiento
+				+ ", telefono=" + telefono + ", direccion=" + direccion + ", Puesto: "+ puesto + "\n";
 	}
 }
 	

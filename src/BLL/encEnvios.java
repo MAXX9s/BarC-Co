@@ -187,10 +187,7 @@ public class encEnvios extends usuario {
 		
 	}
 
-	@Override
-	public String toString() {
-		return "encEnvios";
-	}
+	
 	
 	
 	
