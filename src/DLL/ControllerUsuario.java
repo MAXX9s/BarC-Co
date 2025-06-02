@@ -1,5 +1,6 @@
 	package DLL;
-	import BLL.admin;
+	import BLL.usuario;
+import BLL.admin;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,11 +21,10 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 
     private static Connection con = Conexion.getInstance().getConnection();
 
-    @Override
-    public T login(String nombre, String contraseña) {
-    	nombre=JOptionPane.showInputDialog("Ingresa el nombre");
-    	contraseña=JOptionPane.showInputDialog("Ingrese la contraseña");
-        T usuario = null;
+    
+    public static usuario login(String nombre, String contraseña) {
+  
+		usuario usuario = new usuario();
         try {
             PreparedStatement stmt = con.prepareStatement(
                 "SELECT * FROM usuario WHERE nombre = ? AND contraseña = ?"
@@ -59,16 +59,16 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 
                 switch (Puesto.trim().toLowerCase()) {
                 case "encargado de barcos":
-                    usuario = (T) new encBarcos(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
+                    usuario =  new encBarcos(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
                     ((encBarcos) usuario).FuncionesencBarcos();
                     break;
 
                 case "encargado de envios":
-                    usuario = (T) new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
+                    usuario =  new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
                 	((encEnvios) usuario).FuncionesEnvios();
                     break;
                 case "administrador":
-                    usuario = (T) new admin(id, Nombre, Contraseña, Fecha, Direccion,Telefono, Puesto);
+                    usuario =  new admin(id, Nombre, Contraseña, Fecha, Direccion,Telefono, Puesto);
                 	((admin) usuario).Funcionesadmin();
                     break;
 
@@ -148,6 +148,7 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 	
 }

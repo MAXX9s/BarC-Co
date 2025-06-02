@@ -1,5 +1,6 @@
 package BLL;
 
+import java.awt.JobAttributes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,8 +50,10 @@ public class admin extends usuario {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+	
 		}
 	}
+	
 
 
 
