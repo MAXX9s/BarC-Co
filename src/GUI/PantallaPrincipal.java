@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import BLL.admin;
 import BLL.usuario;
 import BLL.usuario;
 import DLL.ControllerUsuario;
@@ -21,6 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -58,14 +60,15 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel LblTitulo = new JLabel("Empresa Barc-Co");
+		LblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		LblTitulo.setForeground(Color.GRAY);
-		LblTitulo.setFont(new Font("Copperplate Gothic Light", Font.BOLD, 30));
-		LblTitulo.setBounds(140, 36, 367, 137);
+		LblTitulo.setFont(new Font("Copperplate Gothic Light", Font.BOLD, 35));
+		LblTitulo.setBounds(92, 32, 420, 118);
 		contentPane.add(LblTitulo);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/img/puerto2.png")));
-		lblNewLabel.setBounds(302, 211, 256, 232);
+		lblNewLabel.setBounds(293, 211, 256, 232);
 		contentPane.add(lblNewLabel);
 
 		inpEmail = new JTextField();
@@ -74,22 +77,28 @@ public class PantallaPrincipal extends JFrame {
 		inpEmail.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(40, 211, 200, 14);
+		lblNewLabel_1.setForeground(Color.GRAY);
+		lblNewLabel_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(40, 233, 200, 14);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Contraseña");
+		lblNewLabel_1_1.setForeground(Color.GRAY);
+		lblNewLabel_1_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 15));
 		lblNewLabel_1_1.setBounds(40, 331, 200, 14);
 		contentPane.add(lblNewLabel_1_1);
 
 		inpContrasenia = new JPasswordField();
-		inpContrasenia.setBounds(40, 382, 200, 32);
+		inpContrasenia.setBounds(40, 356, 200, 32);
 		contentPane.add(inpContrasenia);
 
 		JLabel lblError = new JLabel("");
+		lblError.setHorizontalAlignment(SwingConstants.CENTER);
 		lblError.setForeground(Color.RED);
-		lblError.setBounds(40, 355, 265, 32);
+		lblError.setBounds(18, 190, 265, 32);
 		contentPane.add(lblError);
 		JButton btnLogin = new JButton("Inciar sesión");
+		btnLogin.setFont(new Font("Copperplate Gothic Light", Font.ITALIC, 11));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -98,8 +107,9 @@ public class PantallaPrincipal extends JFrame {
 					lblError.setText("No se encontró");
 				} else {
 					if (!logueado.equals(btnLogin)) {
-						//JOptionPane.showMessageDialog(null,"No existe");
+						lblError.setText("No se encontró");
 					}else {
+						
 					Tabla tabla = new Tabla();
 					tabla.setVisible(true);
 					dispose();
@@ -107,7 +117,7 @@ public class PantallaPrincipal extends JFrame {
 					}
 			}
 		});
-		btnLogin.setBounds(40, 451, 121, 23);
+		btnLogin.setBounds(76, 420, 121, 23);
 		contentPane.add(btnLogin);
 
 	}
