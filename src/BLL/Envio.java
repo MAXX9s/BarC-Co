@@ -10,9 +10,11 @@ public class Envio {
 	private String destino;
 	private LinkedList<Envio>listaenvios;
 	private int FK_encv;
+	private int id;
 	
-	public Envio(String descripcion, String estado, String origen, String destino,int FK_encv) {
+	public Envio(int id,String descripcion, String estado, String origen, String destino,int FK_encv) {
 		super();
+	this.id=id;
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.numero_envio = numero_envio;
@@ -23,6 +25,14 @@ public class Envio {
 	}
 	
 	public Envio () {}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getDescripcion() {
 		return descripcion;

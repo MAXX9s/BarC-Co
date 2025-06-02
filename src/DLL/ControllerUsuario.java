@@ -66,6 +66,7 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
                 case "encargado de envios":
                     usuario =  new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
                 	((encEnvios) usuario).FuncionesEnvios();
+                	JOptionPane.showMessageDialog(null,encEnvios.verEnvios());
                     break;
                 case "administrador":
                     usuario =  new admin(id, Nombre, Contraseña, Fecha, Direccion,Telefono, Puesto);

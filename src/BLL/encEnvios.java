@@ -132,7 +132,7 @@ public class encEnvios extends usuario {
 						+ "Descripción" + descripcion 
 						 + " \n Origen:" + origen + "\n Destino:" + destino + "\n Estado actual:" + estadoactual);
 				  
-				  agregarEnvio(new Envio(descripcion,estadoactual, origen, destino, fk));
+				  agregarEnvio(new Envio(id,descripcion,estadoactual, origen, destino, fk));
 
 				  
 				  
@@ -176,24 +176,36 @@ public class encEnvios extends usuario {
 		} while (elegido!=2);
 	}
 	
-	public void verEnvios() {
-		Envio envio = new Envio ();
+	public static LinkedList<Envio> verEnvios() {
 		
-		if (listaEnvios.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "No se registro ningún envío");
-		} else {
-			JOptionPane.showMessageDialog(null, "LISTA DE ENVÍOS REGISTRADOS:" + listaEnvios);
-		}
-		
-	}
+	        LinkedList<Envio> Envios = new LinkedList<>();
+	        try {
+	            PreparedStatement stmt = con.prepareStatement("SELECT * FROM envio");
+	            ResultSet rs = stmt.executeQuery();
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	            while (rs.next()) {
+	                int id = rs.getInt("ID_Envio");
+	                String descripcion = rs.getString("Descripcion");
+	                String estado = rs.getString("Estado");
+	                String origen = rs.getString("Origen");
+	                String destino = rs.getString("Destino");
+	                int FK_ecnv = rs.getInt("FK_Encargado de Envios");
+
+
+	               
+		            Envios.add((Envio)new Envio(id,descripcion,estado,origen,destino,FK_ecnv));
+                    	                    
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return Envios; 
+	    }
 }
+	    
+	
+	
+
+
