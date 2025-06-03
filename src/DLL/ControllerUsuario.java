@@ -1,5 +1,7 @@
 	package DLL;
 	import BLL.usuario;
+import GUI.PantallaAdmin;
+import GUI.Tabla;
 import BLL.admin;
 
 import java.sql.Connection;
@@ -70,7 +72,9 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
                     break;
                 case "administrador":
                     usuario =  new admin(id, Nombre, Contraseña, Fecha, Direccion,Telefono, Puesto);
-                	((admin) usuario).Funcionesadmin();
+                	PantallaAdmin frame = new PantallaAdmin();
+                    frame.setVisible(true);
+                    
                     break;
 
                     
@@ -85,7 +89,6 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
         return usuario;
     }
 
-    @Override
     public void agregarUsuario(usuario usuario) {
         try {
             PreparedStatement statement = con.prepareStatement(

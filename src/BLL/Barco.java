@@ -1,27 +1,29 @@
 package BLL;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.LinkedList;
 
 public class Barco {
 	private LinkedList<Barco> Barco = new LinkedList<Barco>();
 	private String nombre;
-	private String fechaEntrada;
-	private String fechaSalida;
-	private String horaEntrada;
-	private String horaSalida;
+	private Date fechaEntrada;
+	private Date fechaSalida;
+	private Time horaEntrada;
+	private Time horaSalida;
 	private int capacidadCarga;
 	private double tarifa;
+	private int FK_ecb;
+	private int id;
 	private double impuesto;
 	
-	public Barco(String nombre, String fechaEntrada,String horaEntrada,int capacidadCarga) {
-		this.nombre = nombre;
-		this.fechaEntrada = fechaEntrada;
-		this.horaEntrada = horaEntrada;
-		this.capacidadCarga = capacidadCarga;
-	}
-	public Barco(LinkedList<Barco> barco, String nombre, String fechaEntrada, String fechaSalida, String horaEntrada,
-			String horaSalida, int capacidadCarga, double tarifa, double impuesto) {
-		Barco = barco;
+
+
+	public Barco(String nombre, Date fechaEntrada, Date fechaSalida, Time horaEntrada, Time horaSalida,
+			int capacidadCarga, double tarifa,int FK_ecb) {
+		super();
 		this.nombre = nombre;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
@@ -29,39 +31,40 @@ public class Barco {
 		this.horaSalida = horaSalida;
 		this.capacidadCarga = capacidadCarga;
 		this.tarifa = tarifa;
-		this.impuesto = impuesto;
-	}
+		this.FK_ecb = FK_ecb;
 	
-
+	}
 	public LinkedList<Barco> getBarco() {
 		return Barco;
 	}
 	public void setBarco(LinkedList<Barco> barco) {
 		Barco = barco;
 	}
-	public String getFechaEntrada() {
+	
+	public Date getFechaEntrada() {
 		return fechaEntrada;
 	}
-	public void setFechaEntrada(String fechaEntrada) {
-		this.fechaEntrada = fechaEntrada;
-	}
-	public String getFechaSalida() {
+
+	public Date getFechaSalida() {
 		return fechaSalida;
 	}
-	public void setFechaSalida(String fechaSalida) {
+	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
-	public String getHoraEntrada() {
+	public Time getHoraEntrada() {
 		return horaEntrada;
 	}
-	public void setHoraEntrada(String horaEntrada) {
+	public void setHoraEntrada(Time horaEntrada) {
 		this.horaEntrada = horaEntrada;
 	}
-	public String getHoraSalida() {
+	public Time getHoraSalida() {
 		return horaSalida;
 	}
-	public void setHoraSalida(String horaSalida) {
+	public void setHoraSalida(Time horaSalida) {
 		this.horaSalida = horaSalida;
+	}
+	public void setFechaEntrada(Date fechaEntrada) {
+		this.fechaEntrada = fechaEntrada;
 	}
 	public String getNombre() {
 		return nombre;
@@ -82,6 +85,13 @@ public class Barco {
 	}
 	public void setTarifa(double tarifa) {
 		this.tarifa = tarifa;
+	}
+	
+	public int getFK_ecb() {
+		return FK_ecb;
+	}
+	public void setFK_ecb(int fK_ecb) {
+		FK_ecb = fK_ecb;
 	}
 	public double getImpuesto() {
 		return impuesto;

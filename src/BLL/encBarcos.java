@@ -1,12 +1,18 @@
 package BLL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
+import DLL.Conexion;
+
 public class encBarcos extends usuario {
 	private LinkedList<Barco> barcos = new LinkedList<Barco>();
+    private static Connection con = Conexion.getInstance().getConnection();
+
 	public encBarcos(int id, String nombre, String contraseña, LocalDate fecha, String direccion, int telefono,
 			String puesto) {
         super(id, nombre, contraseña, fecha, telefono, direccion, puesto);
@@ -25,7 +31,7 @@ public class encBarcos extends usuario {
 
 	        switch (selec) {
 	            case 0:
-	                registrarBarco();
+	            	agregarBarco();
 	                break;
 	            case 1:
 	                registrarsalidaBarco();
@@ -57,15 +63,32 @@ public class encBarcos extends usuario {
 	}
 
 
-	public void registrarBarco(){
-		String nombre = validarCaracteres("Ingrese el nombre del barco");
-		String fechaEntrada = JOptionPane.showInputDialog("Ingrese La fecha de entrada del barco");
-		String horaEntrada = JOptionPane.showInputDialog("Ingrese la hora de entrada del barco");
-		int capacidadcarga = validarNumeros("Ingrese la capacidad de carga");
-		Barco nuevoBarco = new Barco(nombre,fechaEntrada,horaEntrada,capacidadcarga);
-		barcos.add(nuevoBarco);
-		JOptionPane.showMessageDialog(null, "Nombre: "+nombre+"\n"+"Fecha de Entrada: "+fechaEntrada+"\n"+"Hora de Entrada: "+horaEntrada+"\n"+"Capacidad de carga: "+capacidadcarga);
+	public void agregarBarco(Barco Barco) {
+	    try {
+	        PreparedStatement statement = con.prepareStatement(
+	            "INSERT INTO envio (Nombre, Fecha_Entrada, Fecha_Salida, Capacidad, Hora_Entrada, Hora_Salida, Tarifa, `FK_Encargado_de_Barcos`) " +
+	            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+	        );
+	        statement.setString(1, Barco.getNombre());
+	        statement.setDate(2, Barco.getFechaEntrada());
+	        statement.setDate(3, Barco.getFechaSalida());
+	        statement.setInt(4, Barco.getCapacidadCarga());
+	        statement.setTime(5, Barco.getHoraEntrada());
+	        statement.setTime(6, Barco.getHoraSalida());
+	        statement.setDouble(7, Barco.getTarifa());
+	        statement.setInt(8, Barco.getFK_ecb());
+
+	       ;
+
+	        int filas = statement.executeUpdate();
+	        if (filas > 0) {
+	            System.out.println("Enivo Agregado correctamente.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
+	
 	public void registrarsalidaBarco(){
 		String nombre = validarCaracteres("Ingrese el nombre del barco que va a salir:");
 		 Barco barcoEncontrado = null;
@@ -83,8 +106,8 @@ public class encBarcos extends usuario {
 
 			String fechaSalida = JOptionPane.showInputDialog("Ingrese La fecha de Salida del barco");
 		    String horaSalida = JOptionPane.showInputDialog("Ingrese la hora de salida del barco");
-		    barcoEncontrado.setHoraSalida(horaSalida);
-		    barcoEncontrado.setFechaSalida(fechaSalida);
+		   // barcoEncontrado.setHoraSalida(horaSalida);
+		    //barcoEncontrado.setFechaSalida(fechaSalida);
 	}
 	public void calcularTarifaImpuesto(){
 		    String nombre = validarCaracteres("Ingrese el nombre del barco al que desea asignar tarifa e impuesto:");

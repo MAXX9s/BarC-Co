@@ -63,16 +63,16 @@ public class PantallaPrincipal extends JFrame {
 		LblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		LblTitulo.setForeground(Color.GRAY);
 		LblTitulo.setFont(new Font("Copperplate Gothic Light", Font.BOLD, 35));
-		LblTitulo.setBounds(100, 28, 420, 118);
+		LblTitulo.setBounds(157, 25, 420, 118);
 		contentPane.add(LblTitulo);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/img/puuerto.png")));
-		lblNewLabel.setBounds(322, 138, 343, 305);
+		lblNewLabel.setBounds(350, 140, 350, 361);
 		contentPane.add(lblNewLabel);
 
 		inpEmail = new JTextField();
-		inpEmail.setBounds(40, 262, 212, 32);
+		inpEmail.setBounds(40, 262, 243, 32);
 		contentPane.add(inpEmail);
 		inpEmail.setColumns(10);
 
@@ -89,7 +89,7 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 
 		inpContrasenia = new JPasswordField();
-		inpContrasenia.setBounds(40, 356, 212, 32);
+		inpContrasenia.setBounds(40, 356, 243, 32);
 		contentPane.add(inpContrasenia);
 
 		JLabel lblError = new JLabel("");
@@ -108,7 +108,6 @@ public class PantallaPrincipal extends JFrame {
 				} else {
 					if (!logueado.equals(btnLogin)) {
 						lblError.setText("No se encontró");
-						
 					}else {
 						
 					Tabla tabla = new Tabla();

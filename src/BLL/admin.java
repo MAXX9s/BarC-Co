@@ -22,7 +22,7 @@ public class admin extends usuario {
 		super(id, nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
 		this.mail = mail;
 	}
-
+	public admin() {};
 	public String getMail() {
 		return mail;
 	}
