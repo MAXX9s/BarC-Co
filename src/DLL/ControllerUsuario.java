@@ -1,5 +1,6 @@
 	package DLL;
 	import BLL.usuario;
+import GUI.AdministrarEnvios;
 import GUI.PantallaAdmin;
 import GUI.Tabla;
 import BLL.admin;
@@ -67,8 +68,8 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 
                 case "encargado de envios":
                     usuario =  new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
-                	((encEnvios) usuario).FuncionesEnvios();
-                	JOptionPane.showMessageDialog(null,encEnvios.verEnvios());
+            		AdministrarEnvios frame1 = new AdministrarEnvios();
+                    frame1.setVisible(true);
                     break;
                 case "administrador":
                     usuario =  new admin(id, Nombre, Contraseña, Fecha, Direccion,Telefono, Puesto);

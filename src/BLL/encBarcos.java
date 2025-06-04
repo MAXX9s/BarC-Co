@@ -31,7 +31,7 @@ public class encBarcos extends usuario {
 
 	        switch (selec) {
 	            case 0:
-	            	agregarBarco();
+	            	agregarBarco(null);
 	                break;
 	            case 1:
 	                registrarsalidaBarco();
