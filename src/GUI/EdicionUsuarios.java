@@ -7,6 +7,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import BLL.admin;
 import BLL.usuario;
 import DLL.ControllerUsuario;
 
@@ -15,7 +16,7 @@ import java.awt.event.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
-public class Tabla extends JFrame {
+public class EdicionUsuarios extends JFrame {
 
     private JPanel contentPane;
     private JTable table;
@@ -26,7 +27,7 @@ public class Tabla extends JFrame {
 
   
 
-    public Tabla() {
+    public EdicionUsuarios() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 500);
         contentPane = new JPanel();
@@ -45,15 +46,36 @@ public class Tabla extends JFrame {
         scrollPane.setBounds(10, 69, 760, 200);
         contentPane.add(scrollPane);
 
-        JButton btnAgregar = new JButton("Agregar");
-        btnAgregar.setBounds(10, 280, 150, 40);
-        contentPane.add(btnAgregar);
-
         JButton btnEditar = new JButton("Editar");
-        btnEditar.setBounds(328, 280, 150, 40);
+        btnEditar.setBounds(10, 280, 150, 40);
         contentPane.add(btnEditar);
 
         JButton btnEliminar = new JButton("Eliminar");
+
+btnEliminar.addActionListener(e -> {
+    int filaSeleccionada = table.getSelectedRow();
+    if (filaSeleccionada != -1) {
+        int confirm = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este usuario?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            int idUsuario = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+
+            // Crear objeto usuario con solo el ID
+            usuario u = new usuario();
+            u.setId(idUsuario);
+
+            // Llamar al método para eliminar en la base de datos
+            ControllerUsuario.EliminarUsuario(u);
+
+            // Eliminar de la tabla (solo interfaz)
+            model.removeRow(filaSeleccionada);
+
+            // Actualizar etiqueta
+            lblSeleccionado.setText("Seleccionado:");
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Selecciona un usuario para eliminar.");
+    }
+});
         btnEliminar.setBounds(620, 280, 150, 40);
         contentPane.add(btnEliminar);
 
@@ -82,24 +104,37 @@ public class Tabla extends JFrame {
         });
         
         filtro = new JTextField();
-        filtro.setBounds(26, 366, 86, 20);
+        filtro.setBounds(293, 290, 174, 20);
         contentPane.add(filtro);
         filtro.setColumns(10);
         
-        JButton btnNewButton = new JButton("filtrar");
+        JButton btnNewButton = new JButton("Filtrar");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
         		cargarTablaFiltro(filtro.getText());
         	}
         });
-        btnNewButton.setBounds(142, 365, 89, 23);
+        btnNewButton.setBounds(322, 330, 118, 40);
         contentPane.add(btnNewButton);
         
-        JLabel lblNewLabel = new JLabel("Usuarios");
+        JLabel lblNewLabel = new JLabel("Edicion de Usuarios");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblNewLabel.setBounds(346, 11, 111, 22);
+        lblNewLabel.setBounds(304, 11, 174, 22);
         contentPane.add(lblNewLabel);
+        
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		SoporteUsuarios frame = new SoporteUsuarios();
+        		
+                frame.setVisible(true);
+                dispose();
+        		
+        	}
+        });
+        btnVolver.setBounds(620, 366, 150, 40);
+        contentPane.add(btnVolver);
         // Cargar datos
         cargarTabla();
 

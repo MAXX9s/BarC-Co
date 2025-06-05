@@ -119,7 +119,9 @@ public class CrearUsuario extends JFrame {
         		int id=0;
         		usuario nuevo = new usuario(id,nombre, contraseña, fechaNacimiento,telefono,direccion, puesto);
         		administrador.agregarUsuario(nuevo);
-        		
+        		if (btnNewButton.equals(true)) {
+					
+				}
                
                 dispose(); 
         		
@@ -128,6 +130,18 @@ public class CrearUsuario extends JFrame {
         btnNewButton.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
         btnNewButton.setBounds(244, 390, 137, 23);
         getContentPane().add(btnNewButton);
+        
+        JButton btnNewButton_1 = new JButton("Cancelar");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		SoporteUsuarios frame = new SoporteUsuarios();
+                frame.setVisible(true);
+                dispose();
+        		
+        	}
+        });
+        btnNewButton_1.setBounds(517, 409, 102, 25);
+        getContentPane().add(btnNewButton_1);
         
         
         
@@ -145,6 +159,4 @@ public class CrearUsuario extends JFrame {
         PantallaAdmin ventana = new PantallaAdmin();
         ventana.setVisible(true);
     }
-	
-	
 }

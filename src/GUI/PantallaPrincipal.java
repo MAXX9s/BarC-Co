@@ -106,14 +106,8 @@ public class PantallaPrincipal extends JFrame {
 				if (logueado == null) {
 					lblError.setText("No se encontró");
 				} else {
-					if (!logueado.equals(btnLogin)) {
-						lblError.setText("No se encontró");
-					}else {
-						
-					Tabla tabla = new Tabla();
-					tabla.setVisible(true);
 					dispose();
-					}
+					
 					}
 			}
 		});

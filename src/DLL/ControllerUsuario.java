@@ -1,8 +1,9 @@
 	package DLL;
 	import BLL.usuario;
 import GUI.AdministrarEnvios;
+
 import GUI.PantallaAdmin;
-import GUI.Tabla;
+import GUI.EdicionUsuarios;
 import BLL.admin;
 
 import java.sql.Connection;
@@ -146,6 +147,23 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
             e.printStackTrace();
         }
         return usuarios;
+    }
+	public static usuario EliminarUsuario(usuario usuario) {
+        try {
+            PreparedStatement statement = con.prepareStatement(
+            		"DELETE FROM usuario WHERE ID_Usuario=?"
+
+            );
+            statement.setInt(1, usuario.getId());            
+
+            int filas = statement.executeUpdate();
+            if (filas > 0) {
+                System.out.println("Usuario Eliminado correctamente.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return usuario;
     }
 
 	@Override
