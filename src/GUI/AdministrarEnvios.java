@@ -67,6 +67,13 @@ public class AdministrarEnvios extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Salir");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				PantallaencEnvios frame1 = new PantallaencEnvios();
+				frame1.setVisible(true);
+			}
+		});
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton_2.setBounds(232, 284, 138, 35);
 		contentPane.add(btnNewButton_2);

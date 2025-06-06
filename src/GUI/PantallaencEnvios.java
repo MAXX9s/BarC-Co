@@ -57,6 +57,14 @@ public class PantallaencEnvios extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Cerrar Sesion");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				PantallaPrincipal frame = new PantallaPrincipal();
+				frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 11));
 		btnNewButton_2.setBounds(413, 227, 138, 37);
 		contentPane.add(btnNewButton_2);}

@@ -143,7 +143,7 @@ public class encEnvios extends usuario {
 				if (flag) {
 					int numeroeleccion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del envío al que le desea cambiar el estado:"));
 					
-					if (numeroeleccion==envio.getNumero_envio()) {
+					if (numeroeleccion==envio.getId()) {
 						String [] estados1 = new String [] {
 								"Pendiente de Envio","En proceso","Entregado"	
 							};

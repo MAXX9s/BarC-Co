@@ -3,6 +3,7 @@
 import GUI.AdministrarEnvios;
 
 import GUI.PantallaAdmin;
+import GUI.PantallaencEnvios;
 import GUI.EdicionUsuarios;
 import BLL.admin;
 
@@ -69,7 +70,7 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 
                 case "encargado de envios":
                     usuario =  new encEnvios(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
-            		AdministrarEnvios frame1 = new AdministrarEnvios();
+            		PantallaencEnvios frame1 = new PantallaencEnvios();
                     frame1.setVisible(true);
                     break;
                 case "administrador":

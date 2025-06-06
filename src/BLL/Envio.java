@@ -5,7 +5,6 @@ public class Envio {
 	
 	private String descripcion;
 	private String estado;
-	private int numero_envio;
 	private String origen;
 	private String destino;
 	private LinkedList<Envio>listaenvios;
@@ -17,7 +16,6 @@ public class Envio {
 	this.id=id;
 		this.descripcion = descripcion;
 		this.estado = estado;
-		this.numero_envio = numero_envio;
 		this.origen = origen;
 		this.destino = destino;
 		this.FK_encv=FK_encv;
@@ -50,13 +48,6 @@ public class Envio {
 		this.estado = estado;
 	}
 
-	public int getNumero_envio() {
-		return numero_envio;
-	}
-
-	public void setNumero_envio(int numero_envio) {
-		this.numero_envio = numero_envio;
-	}
 
 	public String getOrigen() {
 		return origen;
@@ -97,8 +88,7 @@ public class Envio {
 
 	@Override
 	public String toString() {
-		return " \n Envio [Descripcion:" + descripcion + ", Estado actual:" + estado + ", Número de envío:" + numero_envio
-				+ ", Origen:" + origen + ", Destino:" + destino +  "]";
+		return " \n Envio [Descripcion:" + descripcion + ", Estado actual:" + estado + ", Número de envío:" +  ", Origen:" + origen + ", Destino:" + destino +  "]";
 	}
 	
 	
