@@ -33,17 +33,17 @@ public class AdministrarEnvios extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Administración de Envíos");
-		lblNewLabel.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 25));
-		lblNewLabel.setBounds(118, 49, 369, 65);
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 35));
+		lblNewLabel.setBounds(94, 49, 417, 65);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione la opción deseada:");
-		lblNewLabel_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(198, 125, 199, 28);
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(206, 125, 199, 28);
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Registrar Envío");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnNewButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				RegistrarEnvio frame = new RegistrarEnvio();
 				frame.setVisible(true);
@@ -55,7 +55,7 @@ public class AdministrarEnvios extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Actualizar Envío");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnNewButton_1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				ActualizarEnvio frame = new ActualizarEnvio();
 				frame.setVisible(true);

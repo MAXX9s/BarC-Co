@@ -52,7 +52,7 @@ public class ListadeEnvios extends JFrame {
 	 */
 	public ListadeEnvios() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 536, 490);
+		setBounds(100, 100, 658, 510);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,7 +65,7 @@ public class ListadeEnvios extends JFrame {
 				"ID_Envio", "Descripcion", "Estado", "Origen", "Destino", "FK_encv"}, 0);
         table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(10, 134, 500, 200);
+        scrollPane.setBounds(10, 134, 622, 200);
         contentPane.add(scrollPane);
        
         
@@ -75,8 +75,9 @@ public class ListadeEnvios extends JFrame {
 		
 		
 		JLabel lblNewLabel = new JLabel("Lista de Envios");
+		lblNewLabel.setForeground(new Color(0, 64, 128));
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 42));
-		lblNewLabel.setBounds(107, 64, 335, 59);
+		lblNewLabel.setBounds(168, 64, 309, 59);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Volver");
@@ -88,7 +89,7 @@ public class ListadeEnvios extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(192, 340, 132, 36);
+		btnNewButton.setBounds(261, 376, 132, 36);
 		contentPane.add(btnNewButton);
 	    
         cargarTabla();

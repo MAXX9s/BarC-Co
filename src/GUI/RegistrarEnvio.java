@@ -131,7 +131,7 @@ public class RegistrarEnvio extends JFrame {
         		int fk = Integer.parseInt(textField_4.getText());
         		int id=0;
 
-        		Envio envionuevo = new Envio(id,descripcion,estado,origen,destino,fk);
+        		Envio envionuevo = new Envio(id,descripcion,estado,origen,destino,fk );
 				encargadoenvios.agregarEnvio(envionuevo);
         		
                

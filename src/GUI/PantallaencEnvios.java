@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class PantallaencEnvios extends JFrame {
 
@@ -32,16 +33,16 @@ public class PantallaencEnvios extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Bienvenido Encargado de Envios");
-		lblNewLabel.setForeground(new Color(64, 0, 0));
-		lblNewLabel.setFont(new Font("Copperplate Gothic Light", Font.BOLD, 25));
-		lblNewLabel.setBounds(64, 67, 487, 71);
+		JLabel lblNewLabel = new JLabel("BIENVENIDO ENCARGADO DE ENVIOS");
+		lblNewLabel.setForeground(new Color(0, 0, 0));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 26));
+		lblNewLabel.setBounds(51, 22, 500, 71);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione la opción deseada:");
-		lblNewLabel_1.setForeground(new Color(64, 0, 0));
-		lblNewLabel_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(186, 149, 228, 28);
+		lblNewLabel_1.setForeground(new Color(0, 64, 128));
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(307, 104, 228, 28);
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Administrar Envios");
@@ -54,7 +55,7 @@ public class PantallaencEnvios extends JFrame {
 			
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 11));
-		btnNewButton.setBounds(64, 227, 139, 37);
+		btnNewButton.setBounds(340, 143, 139, 37);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Ver Envíos");
@@ -69,7 +70,7 @@ public class PantallaencEnvios extends JFrame {
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 11));
-		btnNewButton_1.setBounds(241, 227, 139, 37);
+		btnNewButton_1.setBounds(340, 205, 139, 37);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Cerrar Sesion");
@@ -82,8 +83,13 @@ public class PantallaencEnvios extends JFrame {
 			}
 		});
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 11));
-		btnNewButton_2.setBounds(413, 227, 138, 37);
-		contentPane.add(btnNewButton_2);}
+		btnNewButton_2.setBounds(341, 263, 138, 37);
+		contentPane.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(PantallaencEnvios.class.getResource("/img/enviar.png")));
+		lblNewLabel_2.setBounds(73, 91, 208, 265);
+		contentPane.add(lblNewLabel_2);}
 	
 	public static void main(String[] args) {
 		PantallaencEnvios frame = new PantallaencEnvios();

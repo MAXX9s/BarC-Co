@@ -59,37 +59,37 @@ public class PantallaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel LblTitulo = new JLabel("Empresa Barc-Co");
+		JLabel LblTitulo = new JLabel("Bienvenido a Barc-Co");
 		LblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		LblTitulo.setForeground(Color.GRAY);
-		LblTitulo.setFont(new Font("Copperplate Gothic Light", Font.BOLD, 35));
-		LblTitulo.setBounds(157, 25, 420, 118);
+		LblTitulo.setForeground(new Color(0, 64, 128));
+		LblTitulo.setFont(new Font("Arial", Font.BOLD, 50));
+		LblTitulo.setBounds(88, 26, 527, 118);
 		contentPane.add(LblTitulo);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/img/Logo2.png")));
-		lblNewLabel.setBounds(401, 185, 256, 258);
+		lblNewLabel.setBounds(401, 155, 256, 258);
 		contentPane.add(lblNewLabel);
 
 		inpEmail = new JTextField();
-		inpEmail.setBounds(40, 262, 243, 32);
+		inpEmail.setBounds(63, 221, 243, 32);
 		contentPane.add(inpEmail);
 		inpEmail.setColumns(10);
 
-		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setForeground(Color.GRAY);
+		JLabel lblNewLabel_1 = new JLabel("Nombre:");
+		lblNewLabel_1.setForeground(new Color(0, 64, 128));
 		lblNewLabel_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(40, 233, 200, 14);
+		lblNewLabel_1.setBounds(63, 185, 200, 14);
 		contentPane.add(lblNewLabel_1);
 
-		JLabel lblNewLabel_1_1 = new JLabel("Contraseña");
-		lblNewLabel_1_1.setForeground(Color.GRAY);
+		JLabel lblNewLabel_1_1 = new JLabel("Contraseña:");
+		lblNewLabel_1_1.setForeground(new Color(0, 64, 128));
 		lblNewLabel_1_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 15));
-		lblNewLabel_1_1.setBounds(40, 331, 200, 14);
+		lblNewLabel_1_1.setBounds(63, 287, 200, 14);
 		contentPane.add(lblNewLabel_1_1);
 
 		inpContrasenia = new JPasswordField();
-		inpContrasenia.setBounds(40, 356, 243, 32);
+		inpContrasenia.setBounds(63, 323, 243, 32);
 		contentPane.add(inpContrasenia);
 
 		JLabel lblError = new JLabel("");
@@ -98,7 +98,7 @@ public class PantallaPrincipal extends JFrame {
 		lblError.setBounds(18, 190, 265, 32);
 		contentPane.add(lblError);
 		JButton btnLogin = new JButton("Inciar sesión");
-		btnLogin.setFont(new Font("Copperplate Gothic Light", Font.ITALIC, 11));
+		btnLogin.setFont(new Font("Arial", Font.BOLD, 13));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -111,7 +111,7 @@ public class PantallaPrincipal extends JFrame {
 					}
 			}
 		});
-		btnLogin.setBounds(76, 420, 121, 23);
+		btnLogin.setBounds(111, 396, 152, 32);
 		contentPane.add(btnLogin);
 
 	}

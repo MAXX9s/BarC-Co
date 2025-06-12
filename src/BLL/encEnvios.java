@@ -60,7 +60,7 @@ public class encEnvios extends usuario {
 	public void agregarEnvio(Envio envio) {
 	    try {
 	        PreparedStatement statement = con.prepareStatement(
-	            "INSERT INTO envio (Descripcion, Estado, Origen, Destino,FK_Encargado_de_Envios) " +
+	            "INSERT INTO envio (Descripcion, Estado, Origen, Destino,FK_ecnv) " +
 	            "VALUES (?, ?, ?, ?,?)"
 	        );
 
@@ -203,6 +203,42 @@ public class encEnvios extends usuario {
 
 	        return Envios; 
 	    }
+	
+	public void actualizarEstadoEnvio(Envio u,int ID_Envio, String nuevoEstado) {
+		  try {
+		        PreparedStatement statement = con.prepareStatement(
+		            "UPDATE envio SET Estado = ? WHERE ID_Envio = ?"
+		        );
+
+		        statement.setString(1, nuevoEstado); 
+		        statement.setInt(2, ID_Envio);        
+
+		        int filasActualizadas = statement.executeUpdate();
+
+		        if (filasActualizadas > 0) {
+		            System.out.println("Estado del envío actualizado correctamente.");
+		        } else {
+		            System.out.println("No se encontró el envío con ese ID.");
+		        }
+
+		       
+
+		       
+		        if (filasActualizadas > 0) {
+		            System.out.println("Envío actualizado correctamente.");
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+	}
+
+
+	
+
+	
+	
+	
+	
 }
 	    
 	
