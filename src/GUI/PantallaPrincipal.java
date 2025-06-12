@@ -67,8 +67,8 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(LblTitulo);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/img/puuerto.png")));
-		lblNewLabel.setBounds(350, 140, 350, 361);
+		lblNewLabel.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/img/Logo2.png")));
+		lblNewLabel.setBounds(401, 185, 256, 258);
 		contentPane.add(lblNewLabel);
 
 		inpEmail = new JTextField();
