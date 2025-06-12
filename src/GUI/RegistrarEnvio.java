@@ -35,7 +35,7 @@ public class RegistrarEnvio extends JFrame {
 	public static void main(String[] args) {
 
 					RegistrarEnvio frame = new RegistrarEnvio();
-					frame.setVisible(true);
+					frame.setVisible(true);			
 	}
 
 	public RegistrarEnvio() {

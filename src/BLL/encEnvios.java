@@ -189,7 +189,7 @@ public class encEnvios extends usuario {
 	                String estado = rs.getString("Estado");
 	                String origen = rs.getString("Origen");
 	                String destino = rs.getString("Destino");
-	                int FK_ecnv = rs.getInt("FK_Encargado de Envios");
+	                int FK_ecnv = rs.getInt("FK_ecnv");
 
 
 	               

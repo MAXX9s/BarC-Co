@@ -5,11 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import BLL.Envio;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.LinkedList;
 import java.awt.event.ActionEvent;
 
 public class PantallaencEnvios extends JFrame {
@@ -52,6 +58,16 @@ public class PantallaencEnvios extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Ver Envíos");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				ListadeEnvios frame = new ListadeEnvios();
+				frame.setVisible(true);
+			
+				
+			}
+		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 11));
 		btnNewButton_1.setBounds(241, 227, 139, 37);
 		contentPane.add(btnNewButton_1);
