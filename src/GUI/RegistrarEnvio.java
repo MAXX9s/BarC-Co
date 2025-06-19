@@ -12,6 +12,8 @@ import BLL.encEnvios;
 import BLL.usuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -31,6 +33,8 @@ public class RegistrarEnvio extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_4;
+	private JLabel lblNewLabel_5  = new JLabel("");
+	
 
 	public static void main(String[] args) {
 
@@ -115,12 +119,24 @@ public class RegistrarEnvio extends JFrame {
 		lblNewLabel_7.setBounds(89, 282, 46, 14);
 		contentPane.add(lblNewLabel_7);
 		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setForeground(new Color(255, 128, 0));
+		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 12));
+		lblNewLabel_5.setBounds(148, 391, 315, 14);
+		contentPane.add(lblNewLabel_5);
+		
 		JButton btnNewButton = new JButton("Registrar ");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 64, 128));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if (textField.getText().isEmpty() || textField_2.getText().isEmpty() || textField_1.getText().isEmpty() ) {
+					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un envío!!");
+	               	contentPane.revalidate();
+	                contentPane.repaint();
+				}else {
+					
 				encEnvios encargadoenvios = new encEnvios();
 				Envio envio = new Envio();
 
@@ -130,16 +146,14 @@ public class RegistrarEnvio extends JFrame {
         		String estado = (String) comboBox.getSelectedItem();
         		int fk = Integer.parseInt(textField_4.getText());
         		int id=0;
-
         		Envio envionuevo = new Envio(id,descripcion,estado,origen,destino,fk );
-				encargadoenvios.agregarEnvio(envionuevo);
-        		
-               
+        	
+					encargadoenvios.agregarEnvio(envionuevo);
+				
+            
                 dispose(); 
+				}
 
-				
-				
-				
 			}
 
 			
@@ -162,6 +176,8 @@ public class RegistrarEnvio extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton_1.setBounds(89, 350, 119, 31);
 		contentPane.add(btnNewButton_1);
+		
+		
 		
 		
 		
