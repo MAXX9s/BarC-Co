@@ -11,6 +11,8 @@ import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+
 import BLL.Barco;
 import BLL.encBarcos;
 import BLL.usuario;
@@ -33,24 +35,24 @@ import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.SystemColor;
 
-public class RegistrarBarco extends JFrame {
+public class RegistrarsalidaBarco extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_4;
 	private JDateChooser dateChooser2;
 	private JSpinner hourSpinner;
     private JSpinner minuteSpinner;  
+    private JComboBox<Barco> comboBarcos;
+    private Barco barcoSeleccionado;
 
 	public static void main(String[] args) {
 
-		RegistrarBarco frame = new RegistrarBarco();
+		RegistrarsalidaBarco frame = new RegistrarsalidaBarco();
 		frame.setVisible(true);
 	}
 
-	public RegistrarBarco() {
+	public RegistrarsalidaBarco() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 605, 455);
 		contentPane = new JPanel();
@@ -59,47 +61,46 @@ public class RegistrarBarco extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Registro de Barcos");
+		comboBarcos = new JComboBox<>();
+        comboBarcos.setBounds(89, 147, 430, 25);
+        contentPane.add(comboBarcos);	
+        
+        JLabel lblBarco = new JLabel("Seleccione Barco:");
+        lblBarco.setForeground(new Color(0, 64, 128));
+        lblBarco.setFont(new Font("Arial", Font.BOLD, 11));
+        lblBarco.setBounds(89, 123, 185, 14);
+        contentPane.add(lblBarco);
+        
+        cargarBarcos();
+		
+        comboBarcos.addActionListener(e -> {
+            barcoSeleccionado = (Barco) comboBarcos.getSelectedItem();
+            if (barcoSeleccionado != null) {
+                // Mostrar datos del barco seleccionado
+              
+                textField_4.setText(String.valueOf(barcoSeleccionado.getTarifa()));
+            }
+        });
+        
+    
+                   
+	
+		JLabel lblNewLabel = new JLabel("Salida de Barcos");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 38));
-		lblNewLabel.setBounds(114, 21, 356, 60);
+		lblNewLabel.setBounds(135, 22, 356, 60);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("A continuación registre todos los detalles del barco");
+		JLabel lblNewLabel_1 = new JLabel("A continuación, registre todos los detalles correspondientes a la salida del barco");
 		lblNewLabel_1.setForeground(new Color(0, 64, 128));
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(133, 92, 300, 25);
+		lblNewLabel_1.setBounds(83, 92, 508, 25);
 		contentPane.add(lblNewLabel_1);
-
-		textField = new JTextField();
-		textField.setBounds(89, 148, 205, 25);
-		contentPane.add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setBounds(314, 148, 205, 25);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-
-		JLabel lblNewLabel_2 = new JLabel("Nombre");
-		lblNewLabel_2.setForeground(new Color(0, 64, 128));
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(89, 123, 185, 14);
-		contentPane.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Fecha y hora de entrada:");
 		lblNewLabel_3.setForeground(new Color(0, 64, 128));
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_3.setBounds(89, 214, 174, 12);
 		contentPane.add(lblNewLabel_3);
-		
-		
-	
-
-		JLabel lblNewLabel_4 = new JLabel("Capacidad de carga:");
-		lblNewLabel_4.setForeground(new Color(0, 64, 128));
-		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(314, 128, 156, 14);
-		contentPane.add(lblNewLabel_4);
 
 		textField_4 = new JTextField();
 		textField_4.setBounds(374, 236, 145, 25);
@@ -109,7 +110,7 @@ public class RegistrarBarco extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Tarifa:");
 		lblNewLabel_7.setForeground(new Color(0, 64, 128));
 		lblNewLabel_7.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_7.setBounds(374, 213, 46, 14);
+		lblNewLabel_7.setBounds(377, 213, 46, 14);
 		contentPane.add(lblNewLabel_7);
 
 		JButton btnNewButton = new JButton("Registrar ");
@@ -117,31 +118,28 @@ public class RegistrarBarco extends JFrame {
 		btnNewButton.setBackground(new Color(0, 64, 128));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
-				   String nombre = textField.getText();
-                   Date fechaEntrada = dateChooser2.getDate();
-                   int horas = (int) hourSpinner.getValue();
-                   int minutos = (int) minuteSpinner.getValue();
-                   int capacidad = Integer.parseInt(textField_1.getText());
-                   double tarifa = Double.parseDouble(textField_4.getText());
+				if (barcoSeleccionado == null) {
+		            JOptionPane.showMessageDialog(null, "Seleccione un barco primero");
+		            return;
+		        }else {
+				 int horas = (int) hourSpinner.getValue();
+		            int minutos = (int) minuteSpinner.getValue();
+		            double tarifa = Double.parseDouble(textField_4.getText());
+		            
+		            barcoSeleccionado.setFechaSalida(new Date(dateChooser2.getDate().getTime()));
+		            barcoSeleccionado.setHoraSalida(new Time(horas, minutos, 0));
+		            barcoSeleccionado.setTarifa(tarifa);
+		        
+		            if (ControllerBarco.registrarSalida(barcoSeleccionado)) {
+		                JOptionPane.showMessageDialog(null, "Salida registrada exitosamente");
+		                dispose();
+		                new AdministrarBarcos().setVisible(true);
+		            } else {
+		                JOptionPane.showMessageDialog(null, "Error al registrar salida");
+		            }
 
-                   Barco nuevoBarco = new Barco();
-                   nuevoBarco.setNombre(nombre);
-                   nuevoBarco.setCapacidad(capacidad);
-                   nuevoBarco.setFechaEntrada(fechaEntrada);
-                   nuevoBarco.setHoraEntrada(new Time(horas, minutos, 0));  
-                   nuevoBarco.setTarifa(tarifa);  
-                   nuevoBarco.setFkEncargado(1);
-                   
-                   if (ControllerBarco.registrarBarco(nuevoBarco)) {
-                       JOptionPane.showMessageDialog(null, "Barco registrado exitosamente");
-                       dispose();
-                       new AdministrarBarcos().setVisible(true);
-                   } else {
-                       JOptionPane.showMessageDialog(null, "Error al registrar el barco");
-                   }
 			}
-
+			}
 		});
 
 		// Crear el segundo JDateChooser
@@ -198,7 +196,17 @@ public class RegistrarBarco extends JFrame {
 	        lblNewLabel_3_1_1.setFont(new Font("Arial", Font.BOLD, 11));
 	        lblNewLabel_3_1_1.setBounds(304, 214, 60, 12);
 	        contentPane.add(lblNewLabel_3_1_1);
-		
+	}
+	
+	        
+        private void cargarBarcos() {
+            comboBarcos.removeAllItems();
+            LinkedList<Barco> barcos = ControllerBarco.obtenerBarcosEnPuerto();
+            for (Barco barco : barcos) {
+                comboBarcos.addItem(barco);
+            }
+        
+      
 
 	}
 }

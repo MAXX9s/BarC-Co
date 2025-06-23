@@ -9,33 +9,51 @@ import java.util.LinkedList;
 public class Barco {
 	private LinkedList<Barco> Barco = new LinkedList<Barco>();
 	private String nombre;
-	private Date fechaEntrada;
-	private Date fechaSalida;
+    private java.sql.Date fechaEntrada;
+    private java.sql.Date fechaSalida;
 	private Time horaEntrada;
 	private Time horaSalida;
-	private int capacidadCarga;
+	private double capacidad;
 	private double tarifa;
-	private int FK_ecb;
+	private int fkEncargado;
 	private int id;
 	private double impuesto;
 	
 
-
-	public Barco(String nombre, Date fechaEntrada, Date fechaSalida, Time horaEntrada, Time horaSalida,
-			int capacidadCarga, double tarifa,int FK_ecb) {
-		super();
-		this.nombre = nombre;
-		this.fechaEntrada = fechaEntrada;
-		this.fechaSalida = fechaSalida;
-		this.horaEntrada = horaEntrada;
-		this.horaSalida = horaSalida;
-		this.capacidadCarga = capacidadCarga;
-		this.tarifa = tarifa;
-		this.FK_ecb = FK_ecb;
 	
+	  public Barco() {
+		super();
+		
 	}
+	  public Barco(int id, String nombre, double capacidad, Date fechaEntrada, Time horaEntrada, 
+              Date fechaSalida, Time horaSalida, double tarifa, double impuesto, int fkEncargado) {
+      this.id = id;
+      this.nombre = nombre;
+      this.capacidad = capacidad;
+      this.fechaEntrada = fechaEntrada;
+      this.horaEntrada = horaEntrada;
+      this.fechaSalida = fechaSalida;
+      this.horaSalida = horaSalida;
+      this.tarifa = tarifa;
+      this.impuesto = impuesto;
+      this.fkEncargado = fkEncargado;
+	  }
 	public LinkedList<Barco> getBarco() {
 		return Barco;
+	}
+	
+	
+	public double getCapacidad() {
+		return capacidad;
+	}
+	public void setCapacidad(double capacidad) {
+		this.capacidad = capacidad;
+	}
+	public int getFkEncargado() {
+		return fkEncargado;
+	}
+	public void setFkEncargado(int fkEncargado) {
+		this.fkEncargado = fkEncargado;
 	}
 	public void setBarco(LinkedList<Barco> barco) {
 		Barco = barco;
@@ -48,8 +66,8 @@ public class Barco {
 	public Date getFechaSalida() {
 		return fechaSalida;
 	}
-	public void setFechaSalida(Date fechaSalida) {
-		this.fechaSalida = fechaSalida;
+	  public void setFechaSalida(java.util.Date fecha) {
+	        this.fechaSalida = fecha != null ? new java.sql.Date(fecha.getTime()) : null;
 	}
 	public Time getHoraEntrada() {
 		return horaEntrada;
@@ -63,8 +81,8 @@ public class Barco {
 	public void setHoraSalida(Time horaSalida) {
 		this.horaSalida = horaSalida;
 	}
-	public void setFechaEntrada(Date fechaEntrada) {
-		this.fechaEntrada = fechaEntrada;
+	public void setFechaEntrada(java.util.Date fecha) {
+		this.fechaEntrada = new java.sql.Date(fecha.getTime());
 	}
 	public String getNombre() {
 		return nombre;
@@ -74,12 +92,7 @@ public class Barco {
 	}
 
 
-	public int getCapacidadCarga() {
-		return capacidadCarga;
-	}
-	public void setCapacidadCarga(int capacidadCarga) {
-		this.capacidadCarga = capacidadCarga;
-	}
+	
 	public double getTarifa() {
 		return tarifa;
 	}
@@ -87,16 +100,22 @@ public class Barco {
 		this.tarifa = tarifa;
 	}
 	
-	public int getFK_ecb() {
-		return FK_ecb;
-	}
-	public void setFK_ecb(int fK_ecb) {
-		FK_ecb = fK_ecb;
-	}
 	public double getImpuesto() {
 		return impuesto;
 	}
 	public void setImpuesto(double impuesto) {
 		this.impuesto = impuesto;
 	}
+	public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public String toString() {
+        return this.nombre ; 
+    }
+	
 }

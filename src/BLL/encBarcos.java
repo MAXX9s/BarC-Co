@@ -66,23 +66,16 @@ public class encBarcos extends usuario {
 	public void agregarBarco(Barco Barco) {
 	    try {
 	        PreparedStatement statement = con.prepareStatement(
-	            "INSERT INTO envio (Nombre, Fecha_Entrada, Fecha_Salida, Capacidad, Hora_Entrada, Hora_Salida, Tarifa, `FK_Encargado_de_Barcos`) " +
-	            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+	            "INSERT INTO envio (Nombre, Fecha_Entrada, Capacidad, Hora_Entrada) VALUES (?, ?, ?, ?)"
 	        );
 	        statement.setString(1, Barco.getNombre());
 	        statement.setDate(2, Barco.getFechaEntrada());
-	        statement.setDate(3, Barco.getFechaSalida());
-	        statement.setInt(4, Barco.getCapacidadCarga());
-	        statement.setTime(5, Barco.getHoraEntrada());
-	        statement.setTime(6, Barco.getHoraSalida());
-	        statement.setDouble(7, Barco.getTarifa());
-	        statement.setInt(8, Barco.getFK_ecb());
-
-	       ;
+	        statement.setDouble(3, Barco.getCapacidad());
+	        statement.setTime(4, Barco.getHoraEntrada());
 
 	        int filas = statement.executeUpdate();
 	        if (filas > 0) {
-	            System.out.println("Enivo Agregado correctamente.");
+	            System.out.println("Barco registrado parcialmente.");
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -147,7 +140,7 @@ public class encBarcos extends usuario {
 	                     + "Hora de entrada: " + b.getHoraEntrada()+ "\n"
 	                     +"Fecha de Salida: " + b.getFechaSalida()+ "\n"
 	                     + "Hora de salida: " + (b.getHoraSalida() != null ? b.getHoraSalida() : "No registrada") + "\n"
-	                     + "Capacidad de carga: " + b.getCapacidadCarga() + "\n";
+	                     + "Capacidad de carga: " + b.getCapacidad() + "\n";
 
 	        JOptionPane.showMessageDialog(null, datos);
 	    }
@@ -179,5 +172,19 @@ public class encBarcos extends usuario {
 		} while (!flag);
 
 		return Integer.parseInt(num);
+	}
+	public static boolean registrarSalida(Barco barco) {
+	    try {
+	        PreparedStatement stmt = con.prepareStatement(
+	            "UPDATE barco SET fecha_salida = ?, hora_salida = ? WHERE id = ?");
+	        stmt.setDate(1, barco.getFechaSalida());
+	        stmt.setTime(2, barco.getHoraSalida());
+	        stmt.setInt(3, barco.getId());
+	        
+	        return stmt.executeUpdate() > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 }
