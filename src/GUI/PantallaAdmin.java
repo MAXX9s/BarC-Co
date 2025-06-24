@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class PantallaAdmin extends JFrame {
 
@@ -25,8 +26,8 @@ public class PantallaAdmin extends JFrame {
         
         JLabel lblNewLabel = new JLabel("Seleccione la opcion deseada:");
         lblNewLabel.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 15));
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setBounds(194, 104, 283, 37);
+        lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        lblNewLabel.setBounds(26, 109, 283, 37);
         getContentPane().add(lblNewLabel);
         
         JButton btnNewButton = new JButton("Soporte de Usuarios");
@@ -38,12 +39,12 @@ public class PantallaAdmin extends JFrame {
                 dispose();
         	}
         });
-        btnNewButton.setBounds(244, 163, 172, 37);
+        btnNewButton.setBounds(63, 166, 172, 37);
         getContentPane().add(btnNewButton);
         
         JButton btnListadoDeBarcos = new JButton("Listado de Barcos");
         btnListadoDeBarcos.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
-        btnListadoDeBarcos.setBounds(244, 222, 172, 37);
+        btnListadoDeBarcos.setBounds(63, 226, 172, 37);
         getContentPane().add(btnListadoDeBarcos);
         
         JButton btnListadoDeEnvios = new JButton("Listado de Envios");
@@ -57,7 +58,7 @@ public class PantallaAdmin extends JFrame {
         	}
         });
         btnListadoDeEnvios.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
-        btnListadoDeEnvios.setBounds(244, 284, 172, 37);
+        btnListadoDeEnvios.setBounds(63, 283, 172, 37);
         getContentPane().add(btnListadoDeEnvios);
         
         JButton btnSalir = new JButton("Cerrar Session");
@@ -71,8 +72,13 @@ public class PantallaAdmin extends JFrame {
         	}
         });
         btnSalir.setFont(new Font("Dialog", Font.PLAIN, 11));
-        btnSalir.setBounds(244, 344, 172, 37);
+        btnSalir.setBounds(63, 345, 172, 37);
         getContentPane().add(btnSalir);
+        
+        JLabel lblNewLabel_1 = new JLabel("");
+        lblNewLabel_1.setIcon(new ImageIcon(PantallaAdmin.class.getResource("/img/admin4.png")));
+        lblNewLabel_1.setBounds(338, 109, 256, 306);
+        getContentPane().add(lblNewLabel_1);
     }
 
     public static void main(String[] args) {
