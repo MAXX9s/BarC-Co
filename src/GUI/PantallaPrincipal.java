@@ -1,5 +1,6 @@
 package GUI;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -63,7 +64,7 @@ public class PantallaPrincipal extends JFrame {
 		LblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		LblTitulo.setForeground(new Color(0, 64, 128));
 		LblTitulo.setFont(new Font("Arial", Font.BOLD, 50));
-		LblTitulo.setBounds(88, 26, 527, 118);
+		LblTitulo.setBounds(96, 27, 527, 118);
 		contentPane.add(LblTitulo);
 
 		JLabel lblNewLabel = new JLabel("");
