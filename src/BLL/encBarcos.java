@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 import DLL.Conexion;
+import DLL.ControllerBarco;
 
 public class encBarcos extends usuario {
 	private LinkedList<Barco> barcos = new LinkedList<Barco>();
@@ -128,22 +129,13 @@ public class encBarcos extends usuario {
 		}
 		
 	
-	public void verBarcos() {
-		if (barcos.isEmpty()) {
+	public static LinkedList<Barco> verBarcos() {
+		LinkedList<Barco> listaBarcos = ControllerBarco.obtenerTodosLosBarcos();
+		if (listaBarcos.isEmpty()) {
 	        JOptionPane.showMessageDialog(null, "No hay barcos registrados.");
-	        return;
+	      
 	    }
-
-	    for (Barco b : barcos) {
-	        String datos = "Nombre: " + b.getNombre() + "\n"
-	        		 	 +"Fecha de entrada: " + b.getFechaEntrada()+ "\n"
-	                     + "Hora de entrada: " + b.getHoraEntrada()+ "\n"
-	                     +"Fecha de Salida: " + b.getFechaSalida()+ "\n"
-	                     + "Hora de salida: " + (b.getHoraSalida() != null ? b.getHoraSalida() : "No registrada") + "\n"
-	                     + "Capacidad de carga: " + b.getCapacidad() + "\n";
-
-	        JOptionPane.showMessageDialog(null, datos);
-	    }
+		return listaBarcos;
 	}
 	public String validarCaracteres(String mensaje) {
 		String palabra = "";

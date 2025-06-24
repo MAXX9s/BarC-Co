@@ -1,19 +1,13 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import BLL.Barco;
-import BLL.encBarcos;
-import BLL.usuario;
 import DLL.ControllerBarco;
 
 import javax.swing.JLabel;
@@ -26,11 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Time;
-import java.time.LocalDate;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.ComboBoxEditor;
-import javax.swing.DefaultComboBoxModel;
 import java.awt.SystemColor;
 
 public class RegistrarBarco extends JFrame {

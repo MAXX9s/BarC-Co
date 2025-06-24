@@ -30,7 +30,7 @@ public class PantallaencBarcos extends JFrame {
 		JLabel lblNewLabel = new JLabel("BIENVENIDO ENCARGADO DE BARCOS");
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 26));
-		lblNewLabel.setBounds(51, 22, 500, 71);
+		lblNewLabel.setBounds(51, 22, 540, 71);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione la opción deseada:");
@@ -57,7 +57,7 @@ public class PantallaencBarcos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				ListadeEnvios frame = new ListadeEnvios();
+				ListadeBarco frame = new ListadeBarco();
 				frame.setVisible(true);
 			
 				
@@ -82,7 +82,7 @@ public class PantallaencBarcos extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon(PantallaencBarcos.class.getResource("/img/enviar.png")));
-		lblNewLabel_2.setBounds(73, 91, 208, 265);
+		lblNewLabel_2.setBounds(61, 91, 208, 265);
 		contentPane.add(lblNewLabel_2);}
 	
 	

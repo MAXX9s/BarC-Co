@@ -67,7 +67,7 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(LblTitulo);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/img/Logo2.png")));
+		lblNewLabel.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/img/Logo.png")));
 		lblNewLabel.setBounds(401, 155, 256, 258);
 		contentPane.add(lblNewLabel);
 

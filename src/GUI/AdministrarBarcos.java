@@ -51,19 +51,19 @@ public class AdministrarBarcos extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.setBounds(70, 164, 138, 35);
+		btnNewButton.setBounds(140, 163, 138, 35);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrar Salida");
 		btnNewButton_1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				ActualizarEnvio frame = new ActualizarEnvio();
+				RegistrarsalidaBarco frame = new RegistrarsalidaBarco();
 				frame.setVisible(true);
 
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_1.setBounds(237, 164, 138, 35);
+		btnNewButton_1.setBounds(347, 163, 138, 35);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Salir");
@@ -78,11 +78,7 @@ public class AdministrarBarcos extends JFrame {
 		btnNewButton_2.setBounds(206, 324, 199, 39);
 		contentPane.add(btnNewButton_2);
 		
-		JButton btnNewButton_1_1 = new JButton("Registrar Tarifa");
-		btnNewButton_1_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_1_1.setBounds(402, 164, 138, 35);
-		contentPane.add(btnNewButton_1_1);
-
+		
 		
 	}
 }

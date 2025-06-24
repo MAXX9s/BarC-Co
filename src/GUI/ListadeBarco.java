@@ -10,16 +10,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.LinkedList;
 import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 
 import BLL.usuario;
 import BLL.Barco;
+import BLL.Envio;
 import BLL.encBarcos;
+import BLL.encEnvios;
 import DLL.ControllerUsuario;
 
 public class ListadeBarco extends JFrame {
@@ -99,6 +105,36 @@ public class ListadeBarco extends JFrame {
 	 
 
 		  private void cargarTabla() {
+			
+					model.setRowCount(0);
+					  
+		 			  LinkedList<Barco> listaBarcos = encBarcos.verBarcos();
+					
+					
+					for (Barco u : listaBarcos) {
+			        	/*int id, String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
+					String puesto*/
+			        	/*int id, String nombre, double capacidad, Date fechaEntrada, Time horaEntrada, 
+			              Date fechaSalida, Time horaSalida, double tarifa, double impuesto, int fkEncargado*/
+			            model.addRow(
+			            		new Object[]{
+			            				u.getId(),
+			            				u.getNombre(),
+			            				u.getCapacidad(),
+			            				u.getFechaEntrada(),
+			            				u.getHoraEntrada(),
+			            				u.getFechaSalida(),
+			            				u.getHoraSalida(),
+			            				u.getTarifa(), 
+			            				}
+			            		);
+			        } 
+			        }
+		  		
+			    
+
 		  }
+		  
+		  
 		
-}
+
