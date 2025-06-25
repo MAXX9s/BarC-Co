@@ -3,6 +3,7 @@
 import GUI.AdministrarEnvios;
 
 import GUI.PantallaAdmin;
+import GUI.PantallaencBarcos;
 import GUI.PantallaencEnvios;
 import GUI.EdicionUsuarios;
 import BLL.admin;
@@ -65,7 +66,8 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
                 switch (Puesto.trim().toLowerCase()) {
                 case "encargado de barcos":
                     usuario =  new encBarcos(id, Nombre, Contraseña, Fecha, Direccion, Telefono, Puesto);
-                    ((encBarcos) usuario).FuncionesencBarcos();
+                    PantallaencBarcos frame2 = new PantallaencBarcos();
+                    frame2.setVisible(true);
                     break;
 
                 case "encargado de envios":
