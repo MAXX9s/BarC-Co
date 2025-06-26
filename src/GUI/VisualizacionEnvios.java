@@ -64,13 +64,13 @@ public class VisualizacionEnvios extends JFrame {
         btnNewButton.setBounds(261, 369, 123, 23);
         contentPane.add(btnNewButton);
         
-        // ... resto del código del constructor ...
+
         
         cargarTabla();
     }
 
     private void cargarTabla() {
-        model.setRowCount(0); // Ahora model está correctamente inicializado
+        model.setRowCount(0); 
         Envio envio = new Envio();
         LinkedList<Envio> listaenvios = encEnvios.verEnvios();
         for (Envio u : listaenvios) {
@@ -81,7 +81,7 @@ public class VisualizacionEnvios extends JFrame {
                     u.getEstado(),
                     u.getOrigen(),
                     u.getDestino(),
-                    u.getFK_encv(),
+                    u.getFK_ecnv(),
                 }
             );
         }
