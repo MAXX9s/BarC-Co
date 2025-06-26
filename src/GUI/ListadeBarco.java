@@ -68,7 +68,7 @@ public class ListadeBarco extends JFrame {
 		
 		
         model = new DefaultTableModel(new String[] {
-				"ID_Barco", "Nombre", "Capacidad", "Fecha entrada", "Hora Entrada", "Fecha Salida", "Hora Salida", "Tarifa"}, 0);
+				"ID_Barco", "Nombre", "Capacidad", "Fecha entrada", "Hora Entrada", "Fecha Salida", "Hora Salida", "Tarifa","Impuesto"}, 0);
         table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(0, 133, 644, 233);
@@ -126,6 +126,7 @@ public class ListadeBarco extends JFrame {
 			            				u.getFechaSalida(),
 			            				u.getHoraSalida(),
 			            				u.getTarifa(), 
+			            				u.getImpuesto()
 			            				}
 			            		);
 			        } 
