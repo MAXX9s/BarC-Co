@@ -96,7 +96,7 @@ public class RegistrarsalidaBarco extends JFrame {
 		lblNewLabel_1.setBounds(83, 92, 508, 25);
 		contentPane.add(lblNewLabel_1);
 
-		JLabel lblNewLabel_3 = new JLabel("Fecha y hora de entrada:");
+		JLabel lblNewLabel_3 = new JLabel("Fecha y hora de salida:");
 		lblNewLabel_3.setForeground(new Color(0, 64, 128));
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_3.setBounds(89, 214, 174, 12);
@@ -107,28 +107,44 @@ public class RegistrarsalidaBarco extends JFrame {
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 
-		JLabel lblNewLabel_7 = new JLabel("Tarifa:");
+		JLabel lblNewLabel_7 = new JLabel("Impuesto:");
 		lblNewLabel_7.setForeground(new Color(0, 64, 128));
 		lblNewLabel_7.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_7.setBounds(377, 213, 46, 14);
+		lblNewLabel_7.setBounds(377, 213, 60, 14);
 		contentPane.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setForeground(new Color(255, 128, 0));
+		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 12));
+		lblNewLabel_5.setBounds(148, 391, 315, 14);
+		contentPane.add(lblNewLabel_5);
+
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setForeground(new Color(0, 128, 0));
+		lblNewLabel_8.setBackground(new Color(128, 128, 128));
+		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNewLabel_8.setBounds(178, 313, 242, 14);
+		contentPane.add(lblNewLabel_8);
+		
+		
 
 		JButton btnNewButton = new JButton("Registrar ");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 64, 128));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (barcoSeleccionado == null) {
-		            JOptionPane.showMessageDialog(null, "Seleccione un barco primero");
-		            return;
+				if (barcoSeleccionado == null || textField_4.getText().isEmpty() ) {
+					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un envío!!");
+	               	contentPane.revalidate();
+	                contentPane.repaint();
 		        }else {
 				 int horas = (int) hourSpinner.getValue();
 		            int minutos = (int) minuteSpinner.getValue();
-		            double tarifa = Double.parseDouble(textField_4.getText());
+		            double impuesto = Double.parseDouble(textField_4.getText());
 		            
 		            barcoSeleccionado.setFechaSalida(new Date(dateChooser2.getDate().getTime()));
 		            barcoSeleccionado.setHoraSalida(new Time(horas, minutos, 0));
-		            barcoSeleccionado.setTarifa(tarifa);
+		            barcoSeleccionado.setImpuesto(impuesto);
 		        
 		            if (ControllerBarco.registrarSalida(barcoSeleccionado)) {
 		                JOptionPane.showMessageDialog(null, "Salida registrada exitosamente");

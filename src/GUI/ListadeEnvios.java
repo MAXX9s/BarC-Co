@@ -112,7 +112,7 @@ public class ListadeEnvios extends JFrame {
 		            				u.getEstado(),
 		            				u.getOrigen(),
 		            				u.getDestino(),
-		            				u.getFK_encv(),
+		            				u.getFK_ecnv(),
 		            				}
 		            		);
 		        }

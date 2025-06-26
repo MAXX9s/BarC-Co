@@ -101,12 +101,31 @@ public class RegistrarBarco extends JFrame {
 		lblNewLabel_7.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_7.setBounds(374, 213, 46, 14);
 		contentPane.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setForeground(new Color(255, 128, 0));
+		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 12));
+		lblNewLabel_5.setBounds(148, 391, 315, 14);
+		contentPane.add(lblNewLabel_5);
 
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setForeground(new Color(0, 128, 0));
+		lblNewLabel_8.setBackground(new Color(128, 128, 128));
+		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNewLabel_8.setBounds(178, 313, 242, 14);
+		contentPane.add(lblNewLabel_8);
+		
 		JButton btnNewButton = new JButton("Registrar ");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 64, 128));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (textField.getText().isEmpty() || textField_1.getText().isEmpty() || textField_4.getText().isEmpty() ) {
+					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un envío!!");
+	               	contentPane.revalidate();
+	                contentPane.repaint();
+				}else {
 					
 				   String nombre = textField.getText();
                    Date fechaEntrada = dateChooser2.getDate();
@@ -124,14 +143,15 @@ public class RegistrarBarco extends JFrame {
                    nuevoBarco.setFkEncargado(1);
                    
                    if (ControllerBarco.registrarBarco(nuevoBarco)) {
-                       JOptionPane.showMessageDialog(null, "Barco registrado exitosamente");
-                       dispose();
-                       new AdministrarBarcos().setVisible(true);
+               		
+   					lblNewLabel_8.setText("Envío registrado correctamente!!");
+   					contentPane.revalidate();
+   	                contentPane.repaint();	
+                      
                    } else {
-                       JOptionPane.showMessageDialog(null, "Error al registrar el barco");
-                   }
+                                          }
 			}
-
+			}
 		});
 
 		// Crear el segundo JDateChooser

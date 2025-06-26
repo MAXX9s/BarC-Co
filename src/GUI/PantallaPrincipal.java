@@ -92,23 +92,29 @@ public class PantallaPrincipal extends JFrame {
 		JLabel lblError = new JLabel("");
 		lblError.setHorizontalAlignment(SwingConstants.CENTER);
 		lblError.setForeground(Color.RED);
-		lblError.setBounds(18, 190, 265, 32);
+		lblError.setBounds(10, 366, 362, 32);
 		contentPane.add(lblError);
 		JButton btnLogin = new JButton("Inciar sesión");
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 13));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				usuario usuario = new usuario();
 				usuario logueado = ControllerUsuario.login(inpEmail.getText(), inpContrasenia.getText());
-				if (logueado == null) {
-					lblError.setText("No se encontró");
-				} else {
+				if (inpEmail.getText().isEmpty() || inpContrasenia.getText().isEmpty()) {
+					lblError.setText("Campos incompletos, por favor vuelva a intenar.");
+				} else if (!inpEmail.getText().equals(usuario.getNombre()) || !inpContrasenia.getText().equals(usuario.getContraseña())) {
+					lblError.setText("Usuario o contraseña incorrectos, intente otra vez");
 					dispose();
+					
+				}else  {
+					
+					
 					
 					}
 			}
 		});
-		btnLogin.setBounds(111, 396, 152, 32);
+
+		btnLogin.setBounds(111, 407, 152, 32);
 		contentPane.add(btnLogin);
 
 	}

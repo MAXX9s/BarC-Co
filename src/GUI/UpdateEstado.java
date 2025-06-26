@@ -30,24 +30,15 @@ public class UpdateEstado extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UpdateEstado frame = new UpdateEstado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		UpdateEstado frame = new UpdateEstado();
+		frame.setVisible(true);	
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public UpdateEstado(int idEnvio, String estadoActual, ActualizarEnvio frameAnterior) {
-	    this.idEnvio = idEnvio;
-	    this.frameAnterior = frameAnterior;
+	public UpdateEstado() {
+
 
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 603, 493);
@@ -68,7 +59,7 @@ public class UpdateEstado extends JFrame {
 	    contentPane.add(comboBox);
 
 
-	    comboBox.setSelectedItem(estadoActual);
+	    comboBox.getSelectedItem();
 
 	    JLabel lblNewLabel_1 = new JLabel("Eliga el estado al que desea cambiar el envío:");
 	    lblNewLabel_1.setForeground(new Color(0, 64, 128));
@@ -99,12 +90,10 @@ public class UpdateEstado extends JFrame {
 	    contentPane.add(btnNewButton);
 
 	    JLabel lblNewLabel_2 = new JLabel("");
-	    lblNewLabel_2.setIcon(new ImageIcon(UpdateEstado.class.getResource("/img/actualizar.png")));
+	    lblNewLabel_2.setIcon(new ImageIcon(UpdateEstado.class.getResource("/img/actualizar2.png")));
 	    lblNewLabel_2.setBounds(57, 156, 134, 133);
 	    contentPane.add(lblNewLabel_2);
 	}
 
-	public UpdateEstado() {
-		// TODO Auto-generated constructor stub
-	}
+
 }

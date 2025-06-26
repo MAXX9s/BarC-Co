@@ -34,6 +34,7 @@ public class RegistrarEnvio extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_4;
 	private JLabel lblNewLabel_5  = new JLabel("");
+	private JLabel lblNewLabel_8  = new JLabel("");
 	
 
 	public static void main(String[] args) {
@@ -125,6 +126,15 @@ public class RegistrarEnvio extends JFrame {
 		lblNewLabel_5.setBounds(148, 391, 315, 14);
 		contentPane.add(lblNewLabel_5);
 		
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setForeground(new Color(0, 128, 0));
+		lblNewLabel_8.setBackground(new Color(128, 128, 128));
+		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNewLabel_8.setBounds(200, 98, 242, 14);
+		contentPane.add(lblNewLabel_8);
+		
+		
+		
 		JButton btnNewButton = new JButton("Registrar ");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 64, 128));
@@ -136,6 +146,10 @@ public class RegistrarEnvio extends JFrame {
 	               	contentPane.revalidate();
 	                contentPane.repaint();
 				}else {
+					
+					lblNewLabel_8.setText("Envío registrado correctamente!!");
+					contentPane.revalidate();
+	                contentPane.repaint();	
 					
 				encEnvios encargadoenvios = new encEnvios();
 				Envio envio = new Envio();
@@ -150,8 +164,9 @@ public class RegistrarEnvio extends JFrame {
         	
 					encargadoenvios.agregarEnvio(envionuevo);
 				
-            
-                dispose(); 
+					
+		
+	                   
 				}
 
 			}
@@ -176,6 +191,8 @@ public class RegistrarEnvio extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton_1.setBounds(89, 350, 119, 31);
 		contentPane.add(btnNewButton_1);
+		
+
 		
 		
 		

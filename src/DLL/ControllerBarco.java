@@ -39,13 +39,12 @@ public class ControllerBarco {
     public static boolean registrarSalida(Barco barco) {
         try {
             PreparedStatement stmt = con.prepareStatement(
-                "UPDATE barco SET Fecha_Salida = ?, Hora_Salida = ?, Tarifa = ?, Impuesto = ? WHERE ID_Barco = ?");
+                "UPDATE barco SET Fecha_Salida = ?, Hora_Salida = ?, Impuesto = ? WHERE ID_Barco = ?");
             
             stmt.setDate(1, new java.sql.Date(barco.getFechaSalida().getTime()));
             stmt.setTime(2, barco.getHoraSalida());
-            stmt.setDouble(3, barco.getTarifa());
-            stmt.setDouble(4, barco.getImpuesto());
-            stmt.setInt(5, barco.getId());
+            stmt.setDouble(3, barco.getImpuesto());
+            stmt.setInt(4, barco.getId());
             
             return stmt.executeUpdate() > 0;
         } catch (Exception e) {
@@ -94,6 +93,7 @@ public class ControllerBarco {
             stmt.setInt(6, barco.getFkEncargado());
             
             return stmt.executeUpdate() > 0;
+            
         } catch (Exception e) {
             e.printStackTrace();
             return false;

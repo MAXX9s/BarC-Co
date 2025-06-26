@@ -68,7 +68,7 @@ public class encEnvios extends usuario {
 	        statement.setString(2, envio.getEstado());
 	        statement.setString(3, envio.getOrigen());
 	        statement.setString(4, envio.getDestino());
-	        statement.setInt(5, envio.getFK_encv());
+	        statement.setInt(5, envio.getFK_ecnv());
 
 	       ;
 

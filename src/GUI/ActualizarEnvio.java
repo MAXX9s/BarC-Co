@@ -75,7 +75,8 @@ public class ActualizarEnvio extends JFrame {
                 	 int ID_Envio = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString()); 
                      String EstadoActual = model.getValueAt(filaSeleccionada, 2).toString(); 
 
-                     UpdateEstado updateEstadoFrame = new UpdateEstado(ID_Envio, EstadoActual, this); 
+                     UpdateEstado frame = new UpdateEstado();
+     				frame.setVisible(true);
             } else {
             	lblErrorSeleccion.setText("¡Debes seleccionar un envío para actualizar!");
             	 contentPane.revalidate();
@@ -120,7 +121,7 @@ public class ActualizarEnvio extends JFrame {
 		            				u.getEstado(),
 		            				u.getOrigen(),
 		            				u.getDestino(),
-		            				u.getFK_encv(),
+		            				u.getFK_ecnv(),
 		            				}
 		            		);
 		        }
