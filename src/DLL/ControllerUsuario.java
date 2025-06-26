@@ -165,13 +165,7 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 	    try  {
             PreparedStatement ps = con.prepareStatement(
 
-            		"UPDATE usuario SET " +
-                            "`Nombre` = ?, " +
-                            "`Contraseña` = ?, " +
-                            "`Direccion` = ?, " +
-                            "`Telefono` = ?, " +
-                            "`Puesto` = ? " +
-                            "WHERE `ID_Usuario` = ?");
+            		"UPDATE usuario SET " + "`Nombre` = ?, " +"`Contraseña` = ?, " + "`Direccion` = ?, " +"`Telefono` = ?, " +"`Puesto` = ? " + "WHERE `ID_Usuario` = ?");
 	       
 	        ps.setString(1, u.getNombre());
 	        ps.setString(2, u.getContraseña());

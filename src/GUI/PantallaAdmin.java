@@ -43,6 +43,14 @@ public class PantallaAdmin extends JFrame {
         getContentPane().add(btnNewButton);
         
         JButton btnListadoDeBarcos = new JButton("Listado de Barcos");
+        btnListadoDeBarcos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		VisualizacionBarcos frame = new VisualizacionBarcos();
+                frame.setVisible(true);
+                dispose();
+        		
+        	}
+        });
         btnListadoDeBarcos.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
         btnListadoDeBarcos.setBounds(63, 226, 172, 37);
         getContentPane().add(btnListadoDeBarcos);
@@ -51,7 +59,9 @@ public class PantallaAdmin extends JFrame {
         btnListadoDeEnvios.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		
+        		VisualizacionEnvios frame = new VisualizacionEnvios();
+                frame.setVisible(true);
+                dispose();
         		
         		
         		

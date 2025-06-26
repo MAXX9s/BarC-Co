@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -137,14 +138,70 @@ public class ActualizarUsuarios extends JFrame {
 		textField_5.setColumns(10);
 		textField_5.setBounds(223, 375, 228, 25);
 		contentPane.add(textField_5);
+		   JLabel lblError = new JLabel("");
+	        lblError.setForeground(Color.RED);
+	        lblError.setHorizontalAlignment(SwingConstants.CENTER);
+	        lblError.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 12));
+	        lblError.setBounds(135, 62, 392, 26);
+	        getContentPane().add(lblError);
 		
 		JButton btnNewButton = new JButton("Actualizar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 guardarCambios();
+				
+				lblError.setText("");
+		         
+		         
+		         if (textField.getText().trim().isEmpty()) {
+		             mostrarError("Por favor ingrese el nombre");
+		             textField.requestFocus();
+		             return;
+		         }
+		         
+		         if (textField_1.getText().trim().isEmpty()) {
+		             mostrarError("Por favor ingrese la contraseña");
+		             textField_1.requestFocus();
+		             return;
+		         }
+		         
+		         if (textField_2.getText().trim().isEmpty()) {
+		             mostrarError("Por favor ingrese la fecha de nacimiento");
+		             textField_2.requestFocus();
+		             return;
+		         }
+		         
+		         if (textField_3.getText().trim().isEmpty()) {
+		             mostrarError("Por favor ingrese la dirección");
+		             textField_3.requestFocus();
+		             return;
+		         }
+		         
+		         if (textField_4.getText().trim().isEmpty()) {
+		             mostrarError("Por favor ingrese el teléfono");
+		             textField_4.requestFocus();
+		             return;
+		         }
+		         String nombre = textField.getText();
+		    		String contraseña = textField_1.getText();
+		    		LocalDate fechaNacimiento = LocalDate.parse(textField_2.getText()); 
+		    		String direccion = textField_3.getText();
+		    		int telefono = Integer.parseInt(textField_4.getText());
+		    		String puesto = textField_5.getText(); 
+		    		  int id = usuarioOriginal.getId();
+
+			        
+			        usuario actualizado = new usuario(id, nombre, contraseña, fechaNacimiento, direccion, telefono, puesto);
+
+			    
+			        ControllerUsuario.ActualizarUsuario(actualizado);
+			        dispose();
+				
 			
 			
 			}
+			private void mostrarError(String mensaje) {
+        		lblError.setForeground(Color.RED);
+        		lblError.setText(mensaje);}
 		});
 		
 		 
@@ -160,37 +217,6 @@ public class ActualizarUsuarios extends JFrame {
 		btnNewButton_1.setBounds(543, 411, 103, 26);
 		contentPane.add(btnNewButton_1);
 	}
-	private void guardarCambios() {
-	    try {
-	       
-	    	String nombre = textField.getText();
-    		String contraseña = textField_1.getText();
-    		LocalDate fechaNacimiento = LocalDate.parse(textField_2.getText()); 
-    		String direccion = textField_3.getText();
-    		int telefono = Integer.parseInt(textField_4.getText());
-    		String puesto = textField_5.getText(); 
-    		  int id = usuarioOriginal.getId();
-
-	        
-	        usuario actualizado = new usuario(id, nombre, contraseña, fechaNacimiento, direccion, telefono, puesto);
-
-	        ControllerUsuario<usuario> usuCtrl = new ControllerUsuario<>();
-	        boolean exito = usuCtrl.ActualizarUsuario(actualizado);
-
-	        if (exito) {
-	            JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-	            parent.cargarTabla();
-	            dispose();
-	        } else {
-	            JOptionPane.showMessageDialog(this, "No se pudo actualizar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
-	        }
-	    } catch (NumberFormatException e) {
-	        JOptionPane.showMessageDialog(this, "El teléfono debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
-	        textField_4.requestFocus();
-	    } catch (Exception ex) {
-	        JOptionPane.showMessageDialog(this, "Error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-	        ex.printStackTrace();
-	    }
-	}
 	
+
 }

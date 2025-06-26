@@ -7,6 +7,7 @@ import BLL.admin;
 import BLL.usuario;
 import DLL.ControllerUsuario;
 
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -32,7 +33,7 @@ public class CrearUsuario extends JFrame {
         JLabel label = new JLabel("Hora de Crear un Usuario Nuevo");
         label.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setBounds(118, 29, 392, 36); 
+        label.setBounds(114, 11, 392, 36); 
         getContentPane().add(label);
         
         textField = new JTextField();
@@ -108,11 +109,49 @@ public class CrearUsuario extends JFrame {
         lblPuesto.setBounds(244, 328, 143, 26);
         getContentPane().add(lblPuesto);
         
+        JLabel lblError = new JLabel("");
+        lblError.setForeground(Color.RED);
+        lblError.setHorizontalAlignment(SwingConstants.CENTER);
+        lblError.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 12));
+        lblError.setBounds(124, 53, 392, 26);
+        getContentPane().add(lblError);
      
         JButton btnNewButton = new JButton("Crear Usuario");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+                lblError.setText("");
+                
+                
+                if (textField.getText().trim().isEmpty()) {
+                    mostrarError("Por favor ingrese el nombre");
+                    textField.requestFocus();
+                    return;
+                }
+                
+                if (textField_1.getText().trim().isEmpty()) {
+                    mostrarError("Por favor ingrese la contraseña");
+                    textField_1.requestFocus();
+                    return;
+                }
+                
+                if (textField_2.getText().trim().isEmpty()) {
+                    mostrarError("Por favor ingrese la fecha de nacimiento");
+                    textField_2.requestFocus();
+                    return;
+                }
+                
+                if (textField_3.getText().trim().isEmpty()) {
+                    mostrarError("Por favor ingrese la dirección");
+                    textField_3.requestFocus();
+                    return;
+                }
+                
+                if (textField_4.getText().trim().isEmpty()) {
+                    mostrarError("Por favor ingrese el teléfono");
+                    textField_4.requestFocus();
+                    return;
+                }
+                
         	
         		ControllerUsuario<usuario> Usu = new ControllerUsuario<usuario>(); 
 
@@ -134,6 +173,9 @@ public class CrearUsuario extends JFrame {
                 
         		
         	}
+        	private void mostrarError(String mensaje) {
+        		lblError.setForeground(Color.RED);
+        		lblError.setText(mensaje);}
         });
         btnNewButton.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
         btnNewButton.setBounds(244, 390, 137, 23);

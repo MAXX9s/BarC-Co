@@ -15,12 +15,12 @@ public class SoporteUsuarios extends JFrame {
         setTitle("Soporte Usuarios");
         setSize(651, 466);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null); // o un layout como BorderLayout, etc.
+        getContentPane().setLayout(null); 
 
         JLabel label = new JLabel("Soporte de Usuarios");
         label.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setBounds(142, 45, 342, 40); // solo si usás layout null
+        label.setBounds(142, 45, 342, 40); 
         getContentPane().add(label);
         
         JButton btnNewButton = new JButton("Crear Usuario");
@@ -41,7 +41,7 @@ public class SoporteUsuarios extends JFrame {
         lblNewLabel.setBounds(199, 96, 237, 18);
         getContentPane().add(lblNewLabel);
         
-        JButton btnListaDeUsuarios = new JButton("Lista de Usuarios");
+        JButton btnListaDeUsuarios = new JButton("Edicion Usuarios");
         btnListaDeUsuarios.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
@@ -50,7 +50,7 @@ public class SoporteUsuarios extends JFrame {
                 dispose();
         	}
         });
-        btnListaDeUsuarios.setFont(new Font("Dialog", Font.PLAIN, 11));
+        btnListaDeUsuarios.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
         btnListaDeUsuarios.setBounds(237, 212, 161, 30);
         getContentPane().add(btnListaDeUsuarios);
         
@@ -63,7 +63,7 @@ public class SoporteUsuarios extends JFrame {
         		
         	}
         });
-        btnVolver.setFont(new Font("Dialog", Font.PLAIN, 11));
+        btnVolver.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
         btnVolver.setBounds(237, 263, 161, 30);
         getContentPane().add(btnVolver);
 }

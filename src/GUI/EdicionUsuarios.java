@@ -29,32 +29,42 @@ public class EdicionUsuarios extends JFrame {
 
     public EdicionUsuarios() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 500);
+        setBounds(100, 100, 823, 500);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblSeleccionado = new JLabel("Seleccionado:");
-        lblSeleccionado.setBounds(10, 44, 760, 20);
-        contentPane.add(lblSeleccionado);
+        
 
         model = new DefaultTableModel(new String[]{
         "ID_Usuario", "Nombre", "Contraseña", "Fecha de nacimiento","Direccion","Telefono","Puesto"}, 0);
         table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(10, 69, 760, 200);
+        scrollPane.setBounds(10, 69, 787, 200);
         contentPane.add(scrollPane);
-
+        
+        JLabel lblErrorEditar = new JLabel("No seleccionó ningún usuario");
+        lblErrorEditar.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
+        lblErrorEditar.setHorizontalAlignment(SwingConstants.CENTER);
+        lblErrorEditar.setForeground(Color.RED);
+        lblErrorEditar.setBounds(280, 38, 225, 20); 
+        lblErrorEditar.setVisible(false); 
+        contentPane.add(lblErrorEditar);
+        
         JButton btnEditar = new JButton("Editar");
+        btnEditar.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
         btnEditar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = table.getSelectedRow(); 
 
+                lblErrorEditar.setVisible(false);
+                
                 if (filaSeleccionada != -1 && usuarioSeleccionado != null) {
                     new ActualizarUsuarios(usuarioSeleccionado, EdicionUsuarios.this).setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Seleccioná un usuario para editar.");
+                    lblErrorEditar.setText("No seleccionó ningún usuario");
+                    lblErrorEditar.setVisible(true);
                 }
             }
         });
@@ -62,6 +72,7 @@ public class EdicionUsuarios extends JFrame {
         contentPane.add(btnEditar);
 
         JButton btnEliminar = new JButton("Eliminar");
+        btnEliminar.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
 
 btnEliminar.addActionListener(e -> {
     int filaSeleccionada = table.getSelectedRow();
@@ -72,10 +83,10 @@ btnEliminar.addActionListener(e -> {
                 u.setId(idUsuario);
                 ControllerUsuario.EliminarUsuario(u);
                 model.removeRow(filaSeleccionada);
-                lblSeleccionado.setText("Seleccionado:");
+                
         
     });
-        btnEliminar.setBounds(620, 280, 150, 40);
+        btnEliminar.setBounds(647, 280, 150, 40);
         contentPane.add(btnEliminar);
 
     
@@ -95,45 +106,50 @@ btnEliminar.addActionListener(e -> {
                         (String) model.getValueAt(row, 6)
     
                     );
-                    lblSeleccionado.setText(usuarioSeleccionado.toString());
-                   
+                    
                    
                 }
             }
         });
         
         filtro = new JTextField();
-        filtro.setBounds(293, 290, 174, 20);
+        filtro.setBounds(306, 300, 174, 20);
         contentPane.add(filtro);
         filtro.setColumns(10);
         
         JButton btnNewButton = new JButton("Filtrar");
+        btnNewButton.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
         		cargarTablaFiltro(filtro.getText());
         	}
         });
-        btnNewButton.setBounds(322, 330, 118, 40);
+        btnNewButton.setBounds(338, 331, 118, 40);
         contentPane.add(btnNewButton);
         
         JLabel lblNewLabel = new JLabel("Edicion de Usuarios");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblNewLabel.setBounds(304, 11, 174, 22);
+        lblNewLabel.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 20));
+        lblNewLabel.setBounds(280, 11, 225, 20);
         contentPane.add(lblNewLabel);
         
         JButton btnVolver = new JButton("Volver");
+        btnVolver.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 13));
         btnVolver.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		SoporteUsuarios frame = new SoporteUsuarios();
-        		
                 frame.setVisible(true);
                 dispose();
         		
         	}
         });
-        btnVolver.setBounds(620, 366, 150, 40);
+        btnVolver.setBounds(647, 367, 150, 40);
         contentPane.add(btnVolver);
+        
+        JLabel lblNewLabel_1 = new JLabel("Buscador:");
+        lblNewLabel_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 12));
+        lblNewLabel_1.setBounds(355, 280, 85, 14);
+        contentPane.add(lblNewLabel_1);
   
         cargarTabla();
 
@@ -164,7 +180,7 @@ btnEliminar.addActionListener(e -> {
         model.setRowCount(0);
         LinkedList<usuario> usuarios = ControllerUsuario.mostrarUsuarios2();
         for (usuario u : usuarios) {
-        	if (u.getNombre().startsWith(filtro)) {
+        	if (u.getNombre().equalsIgnoreCase(filtro)) {
 				
 			
             model.addRow(
