@@ -68,9 +68,6 @@ public class Envio {
 		
 	}
 	
-	
-	
-	
 
 	public int getFK_ecnv() {
 		return FK_ecnv;

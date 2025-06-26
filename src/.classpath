@@ -6,7 +6,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="C:/Users/Maxi/Downloads/mysql-connector-java-5.1.13.jar">
+	<classpathentry kind="lib" path="C:/Users/lucas/Downloads/mysql-connector-java-5.1.13.jar/mysql-connector-java-5.1.13.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lucas/Downloads/jcalendar-1.4/lib/jcalendar-1.4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

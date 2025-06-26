@@ -11,7 +11,7 @@
 	<classpathentry kind="lib" path="com.miglayout.core_11.4.2.jar"/>
 	<classpathentry kind="lib" path="com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
 	<classpathentry kind="lib" path="com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Alumno/Documents/GitHub/BarC-Co/src/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Alumno/Downloads/mysql-connector-java-5.1.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lucas/Downloads/mysql-connector-java-5.1.13.jar/mysql-connector-java-5.1.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lucas/Downloads/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

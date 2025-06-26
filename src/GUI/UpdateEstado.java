@@ -30,15 +30,17 @@ public class UpdateEstado extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		UpdateEstado frame = new UpdateEstado();
-		frame.setVisible(true);	
+		 UpdateEstado frame = new UpdateEstado(1, null); 
+		    frame.setVisible(true);	
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public UpdateEstado() {
+	public UpdateEstado(int idEnvio, ActualizarEnvio frameAnterior) {
 
+		 this.idEnvio = idEnvio;
+		   this.frameAnterior = frameAnterior;
 
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 603, 493);
