@@ -78,7 +78,7 @@ public class RegistrarsalidaBarco extends JFrame {
             if (barcoSeleccionado != null) {
                 // Mostrar datos del barco seleccionado
               
-                textField_4.setText(String.valueOf(barcoSeleccionado.getTarifa()));
+                textField_4.setText(String.valueOf(barcoSeleccionado.getImpuesto()));
             }
         });
         
