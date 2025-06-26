@@ -16,7 +16,7 @@ public class encBarcos extends usuario {
 
 	public encBarcos(int id, String nombre, String contraseña, LocalDate fecha, String direccion, int telefono,
 			String puesto) {
-        super(id, nombre, contraseña, fecha, telefono, direccion, puesto);
+        super(id, nombre, contraseña, fecha, direccion, telefono, puesto);
 
 	}
 

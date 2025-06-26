@@ -40,15 +40,7 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-            	/*
-            	 * ID_Usuario	
-            	 * Nombre
-            	 * 	Contraseña	
-            	 * Fecha de nacimiento	
-            	 * Direccion	
-            	 * Telefono	Puesto	
-            	 * Lista de Usuarios	
-*/
+    
                 int id = rs.getInt("ID_Usuario");
                 String Nombre = rs.getString("Nombre");
                 String Contraseña = rs.getString("Contraseña");
@@ -60,7 +52,6 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 
                 
 
-               // LocalDate fecha = Date.valueOf(null) rs.getDate("Fecha de nacimiento");
 
                 switch (Puesto.trim().toLowerCase()) {
                 case "encargado de barcos":
@@ -93,25 +84,26 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
     }
 
     public void agregarUsuario(usuario usuario) {
-        try {
-            PreparedStatement statement = con.prepareStatement(
-            		"INSERT INTO usuario(ID_Usuario, Nombre, Contraseña, Fecha de nacimiento, Direccion, Telefono, Puesto)) VALUES (?, ?, ?, ?, ?,?,?)"
-            );
-            statement.setString(1, usuario.getNombre());
-            statement.setString(2, usuario.getContraseña());
-            statement.setDate(3, java.sql.Date.valueOf(usuario.getFechanacimiento()));
-            statement.setString(4, usuario.getDireccion());
-            statement.setInt(5, usuario.getTelefono());
-            statement.setString(6, usuario.getPuesto());
-            
+    	try {
+			PreparedStatement statement = con.prepareStatement(
+					"INSERT INTO usuario (Nombre, Contraseña, `Fecha de nacimiento`, Direccion, Telefono, Puesto) "
+							+ "VALUES (?, ?, ?, ?, ?, ?)");
 
-            int filas = statement.executeUpdate();
-            if (filas > 0) {
-                System.out.println("Usuario agregado correctamente.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			statement.setString(1, usuario.getNombre());
+			statement.setString(2, usuario.getContraseña());
+			statement.setDate(3, java.sql.Date.valueOf(usuario.getFechanacimiento()));
+			statement.setString(4, usuario.getDireccion());
+			statement.setInt(5, usuario.getTelefono());
+			statement.setString(6, usuario.getPuesto());
+
+			int filas = statement.executeUpdate();
+			if (filas > 0) {
+				System.out.println("Usuario agregado correctamente.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+	
+		}
     }
 
 	public static LinkedList<usuario> mostrarUsuarios2() {
@@ -167,6 +159,37 @@ public class ControllerUsuario<T extends usuario> implements UsuarioRepository {
 		return usuario;
     }
 
+	public static boolean ActualizarUsuario(usuario u) {
+	    try  {
+            PreparedStatement ps = con.prepareStatement(
+
+            		"UPDATE usuario SET " +
+                            "`Nombre` = ?, " +
+                            "`Contraseña` = ?, " +
+                            "`Direccion` = ?, " +
+                            "`Telefono` = ?, " +
+                            "`Puesto` = ? " +
+                            "WHERE `ID_Usuario` = ?");
+	       
+	        ps.setString(1, u.getNombre());
+	        ps.setString(2, u.getContraseña());
+	        ps.setString(3, u.getDireccion());
+	        ps.setInt(4, u.getTelefono());
+	        ps.setString(5, u.getPuesto());
+	        ps.setInt(6, u.getId());
+
+	        int filas = ps.executeUpdate();
+	        System.out.println("Filas afectadas: " + filas);
+	        return filas > 0;
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	        return false;
+	    }
+	}
+
+	
+	
+	
 	@Override
 	public List<usuario> mostrarUsuarios() {
 		// TODO Auto-generated method stub

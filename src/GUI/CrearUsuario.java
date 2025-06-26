@@ -5,6 +5,7 @@ import javax.swing.SwingConstants;
 
 import BLL.admin;
 import BLL.usuario;
+import DLL.ControllerUsuario;
 
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -12,6 +13,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 public class CrearUsuario extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
@@ -24,12 +27,12 @@ public class CrearUsuario extends JFrame {
         setTitle("Crear Nuevo Usuario");
         setSize(645, 484);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null); // o un layout como BorderLayout, etc.
+        getContentPane().setLayout(null); 
 
         JLabel label = new JLabel("Hora de Crear un Usuario Nuevo");
         label.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setBounds(118, 29, 392, 36); // solo si usás layout null
+        label.setBounds(118, 29, 392, 36); 
         getContentPane().add(label);
         
         textField = new JTextField();
@@ -92,38 +95,43 @@ public class CrearUsuario extends JFrame {
         lblTelefono.setBounds(244, 279, 143, 26);
         getContentPane().add(lblTelefono);
         
+        JComboBox<String> comboBox = new JComboBox();
+        comboBox.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
+        comboBox.setModel(new DefaultComboBoxModel(new String[] {"Encargado de Barcos", "Encargado de Envios", "Administrador"}));
+        comboBox.setBounds(234, 354, 172, 25);
+        getContentPane().add(comboBox);
+        
+        
         JLabel lblPuesto = new JLabel("Puesto");
         lblPuesto.setHorizontalAlignment(SwingConstants.CENTER);
         lblPuesto.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 12));
         lblPuesto.setBounds(244, 328, 143, 26);
         getContentPane().add(lblPuesto);
         
-        textField_5 = new JTextField();
-        textField_5.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 11));
-        textField_5.setColumns(10);
-        textField_5.setBounds(200, 354, 228, 25);
-        getContentPane().add(textField_5);
-        
+     
         JButton btnNewButton = new JButton("Crear Usuario");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		admin administrador = new admin(); // o un singleton si lo preferís
+        	
+        		ControllerUsuario<usuario> Usu = new ControllerUsuario<usuario>(); 
 
         		String nombre = textField.getText();
         		String contraseña = textField_1.getText();
-        		LocalDate fechaNacimiento = LocalDate.parse(textField_2.getText()); // o usar DateTimeFormatter
+        		LocalDate fechaNacimiento = LocalDate.parse(textField_2.getText());
         		String direccion = textField_3.getText();
         		int telefono = Integer.parseInt(textField_4.getText());
-        		String puesto = textField_5.getText(); // si tenés uno más
+        		String puesto = (String) comboBox.getSelectedItem();
         		int id=0;
-        		usuario nuevo = new usuario(id,nombre, contraseña, fechaNacimiento,telefono,direccion, puesto);
-        		administrador.agregarUsuario(nuevo);
+        		usuario nuevo = new usuario(id,nombre, contraseña, fechaNacimiento,direccion,telefono, puesto);
+        		Usu.agregarUsuario(nuevo);
         		if (btnNewButton.equals(true)) {
 					
 				}
-               
+        		SoporteUsuarios frame = new SoporteUsuarios();
+                frame.setVisible(true);
                 dispose(); 
+                
         		
         	}
         });
@@ -142,6 +150,7 @@ public class CrearUsuario extends JFrame {
         });
         btnNewButton_1.setBounds(517, 409, 102, 25);
         getContentPane().add(btnNewButton_1);
+        
         
         
         

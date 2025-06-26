@@ -47,6 +47,17 @@ public class EdicionUsuarios extends JFrame {
         contentPane.add(scrollPane);
 
         JButton btnEditar = new JButton("Editar");
+        btnEditar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                int filaSeleccionada = table.getSelectedRow(); 
+
+                if (filaSeleccionada != -1 && usuarioSeleccionado != null) {
+                    new ActualizarUsuarios(usuarioSeleccionado, EdicionUsuarios.this).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccioná un usuario para editar.");
+                }
+            }
+        });
         btnEditar.setBounds(10, 280, 150, 40);
         contentPane.add(btnEditar);
 
@@ -54,32 +65,20 @@ public class EdicionUsuarios extends JFrame {
 
 btnEliminar.addActionListener(e -> {
     int filaSeleccionada = table.getSelectedRow();
-    if (filaSeleccionada != -1) {
-        int confirm = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este usuario?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (confirm == JOptionPane.YES_OPTION) {
-            int idUsuario = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
-
-            // Crear objeto usuario con solo el ID
-            usuario u = new usuario();
-            u.setId(idUsuario);
-
-            // Llamar al método para eliminar en la base de datos
-            ControllerUsuario.EliminarUsuario(u);
-
-            // Eliminar de la tabla (solo interfaz)
-            model.removeRow(filaSeleccionada);
-
-            // Actualizar etiqueta
-            lblSeleccionado.setText("Seleccionado:");
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Selecciona un usuario para eliminar.");
-    }
-});
+    
+            
+                int idUsuario = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+                usuario u = new usuario();
+                u.setId(idUsuario);
+                ControllerUsuario.EliminarUsuario(u);
+                model.removeRow(filaSeleccionada);
+                lblSeleccionado.setText("Seleccionado:");
+        
+    });
         btnEliminar.setBounds(620, 280, 150, 40);
         contentPane.add(btnEliminar);
 
-        // Acción al seleccionar fila
+    
         table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 int row = table.getSelectedRow();
@@ -91,8 +90,8 @@ btnEliminar.addActionListener(e -> {
                         (String) model.getValueAt(row, 1),
                         (String) model.getValueAt(row, 2),
                         (LocalDate) model.getValueAt(row, 3),
-                        (int) model.getValueAt(row, 4),
-                        (String) model.getValueAt(row, 5),
+                        (String) model.getValueAt(row, 4),
+                        (int) model.getValueAt(row, 5),                  
                         (String) model.getValueAt(row, 6)
     
                     );
@@ -135,25 +134,24 @@ btnEliminar.addActionListener(e -> {
         });
         btnVolver.setBounds(620, 366, 150, 40);
         contentPane.add(btnVolver);
-        // Cargar datos
+  
         cargarTabla();
 
     }
 
-    private void cargarTabla() {
+    public void cargarTabla() {
         model.setRowCount(0);
         LinkedList<usuario> usuarios = ControllerUsuario.mostrarUsuarios2();
         for (usuario u : usuarios) {
-        	/*int id, String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
-		String puesto*/
+       
             model.addRow(
             		new Object[]{
             				u.getId(),
             				u.getNombre(),
             				u.getContraseña(),
             				u.getFechanacimiento(),
-            				u.getTelefono(),
             				u.getDireccion(),
+            				u.getTelefono(),
             				u.getPuesto()}
             		);
         }
@@ -175,10 +173,12 @@ btnEliminar.addActionListener(e -> {
             				u.getNombre(),
             				u.getContraseña(),
             				u.getFechanacimiento(),
-            				u.getTelefono(),
             				u.getDireccion(),
+            				u.getTelefono(),
             				u.getPuesto()}
             		);
         }}
     }
+
+	
 }

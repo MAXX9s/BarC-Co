@@ -16,12 +16,12 @@ public class PantallaAdmin extends JFrame {
         setTitle("Pantalla de Administrador");
         setSize(684, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null); // o un layout como BorderLayout, etc.
+        getContentPane().setLayout(null); 
 
         JLabel label = new JLabel("Bienvenido Administrador");
         label.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setBounds(184, 47, 308, 37); // solo si usás layout null
+        label.setBounds(184, 47, 308, 37); 
         getContentPane().add(label);
         
         JLabel lblNewLabel = new JLabel("Seleccione la opcion deseada:");

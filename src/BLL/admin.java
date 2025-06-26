@@ -19,7 +19,7 @@ public class admin extends usuario {
 
 	public admin(int id, String nombre, String contraseña, LocalDate fechanacimiento,  String direccion,int telefono,
 			String puesto) {
-		super(id, nombre, contraseña, fechanacimiento, telefono, direccion, puesto);
+		super(id, nombre, contraseña, fechanacimiento, direccion,telefono, puesto);
 		this.mail = mail;
 	}
 	public admin() {};
@@ -95,7 +95,7 @@ public class admin extends usuario {
 
 						LocalDate fechaNac = LocalDate.parse(fecha);
 
-						agregarUsuario(new usuario(numero, nombre, contra, fechaNac, numero, direc, puesto));
+						agregarUsuario(new usuario(numero, nombre, contra, fechaNac, direc, numero, puesto));
 						break;
 					case 4:
 						break;

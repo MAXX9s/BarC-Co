@@ -14,7 +14,7 @@ public class usuario {
 	private String puesto;
 	LinkedList<usuario> usuarios = new LinkedList<usuario>();
 	
-	public usuario(int id, String nombre, String contraseña, LocalDate fechanacimiento, int telefono, String direccion,
+	public usuario(int id, String nombre, String contraseña, LocalDate fechanacimiento, String direccion, int telefono,
 			String puesto) {
 		super();
 		this.id = id;

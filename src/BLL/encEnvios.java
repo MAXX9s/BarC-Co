@@ -15,7 +15,7 @@ public class encEnvios extends usuario {
 
 
     public encEnvios(int id, String nombre, String contraseña, LocalDate fechaNacimiento, String direccion, int telefono, String puesto) {
-        super(id, nombre, contraseña, fechaNacimiento, telefono, direccion, puesto);
+        super(id, nombre, contraseña, fechaNacimiento, direccion, telefono, puesto);
     }
 
 	
