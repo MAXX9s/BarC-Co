@@ -122,7 +122,7 @@ public class RegistrarEnvio extends JFrame {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 11));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Sin entregar", "En proceso", "Entregado"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Pendiente de Envío", "En proceso", "Entregado"}));
 		comboBox.setBounds(314, 297, 202, 30);
 		contentPane.add(comboBox);
 		
