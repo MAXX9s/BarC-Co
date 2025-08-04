@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.Connection;
 
 public class Conexion {
-	private static String URL ="jdbc:mysql://localhost:3306/puerto";
+	private static String URL ="jdbc:mysql://localhost:3306/basepuerto";
 	private static String USER = "root";
 	private static String PASSWORD ="";
 	

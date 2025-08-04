@@ -7,7 +7,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import BLL.Envio;
 import BLL.admin;
+import BLL.encEnvios;
 import BLL.usuario;
 import DLL.ControllerUsuario;
 
@@ -152,6 +154,10 @@ btnEliminar.addActionListener(e -> {
         contentPane.add(lblNewLabel_1);
   
         cargarTabla();
+        
+
+
+
 
     }
 
@@ -195,6 +201,9 @@ btnEliminar.addActionListener(e -> {
             		);
         }}
     }
+    
+
+
 
 	
 }

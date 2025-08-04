@@ -55,7 +55,7 @@ public class UpdateEstado extends JFrame {
 	    contentPane.add(lblNewLabel);
 
 	    JComboBox<String> comboBox = new JComboBox<>();
-	    comboBox.setModel(new DefaultComboBoxModel<>(new String[] {"Sin entregar", "En proceso", "Entregado"}));
+	    comboBox.setModel(new DefaultComboBoxModel<>(new String[] {"Pendiente de Envío", "En proceso", "Entregado"}));
 	    comboBox.setFont(new Font("Arial", Font.PLAIN, 25));
 	    comboBox.setBounds(236, 182, 307, 47);
 	    contentPane.add(comboBox);
@@ -95,6 +95,8 @@ public class UpdateEstado extends JFrame {
 	    lblNewLabel_2.setIcon(new ImageIcon(UpdateEstado.class.getResource("/img/actualizar2.png")));
 	    lblNewLabel_2.setBounds(57, 156, 134, 133);
 	    contentPane.add(lblNewLabel_2);
+	    
+	    
 	}
 
 

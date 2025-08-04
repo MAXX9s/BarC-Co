@@ -39,7 +39,7 @@ public class encEnvios extends usuario {
 	int selec=0;
 	int selec1=0;
 	do {
-		selec=JOptionPane.showOptionDialog(null, "Bienvenido Encargado Envíos  "+ getNombre() , "", 0, selec, null, menu, menu[0]);
+		
 		
 		switch (selec) {
 				case 0:
@@ -97,7 +97,6 @@ public class encEnvios extends usuario {
 			switch (elegido) {
 			case 0:
 				
-				JOptionPane.showMessageDialog(null, "A continuación registre todos los detalles del envío a realizar");
 				
 				String descripcion=JOptionPane.showInputDialog("Escriba una breve descripción indicando el contenido del container:");
 				String origen =JOptionPane.showInputDialog("Escriba el origen del envío:");
@@ -110,63 +109,14 @@ public class encEnvios extends usuario {
 				String estadoactual;
 				estadoactual=((String) JOptionPane.showInputDialog(null, "Eliga el estado actual en el que se encuentra el envío registrado:", "Estado actual del envío", 0, null, estados, estados[0]));
 				flag = true;
-				
-				
-				/*try {
-				    PreparedStatement statement = con.prepareStatement(
-				        "SELECT `FK_Encargado de Envios` FROM `envio`"
-				    );
-				    
-				    ResultSet rs = statement.executeQuery();
-				    while (rs.next()) {
-				        int fk = rs.getInt(1); 
-				     
-				    }
-				    
-				} catch (Exception e) {
-				    e.printStackTrace();
-				}
-*/
-				
-				  JOptionPane.showMessageDialog(null, "EL ENVÍO FUE REGISTRADO CORRECTAMENTE: \n"
-						+ "Descripción" + descripcion 
-						 + " \n Origen:" + origen + "\n Destino:" + destino + "\n Estado actual:" + estadoactual);
-				  
+	  
 				  agregarEnvio(new Envio(id,descripcion,estadoactual, origen, destino, fk));
 
-				  
-				  
 				  break;
 				 
 				
 			case 1:
-				if (flag) {
-					int numeroeleccion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del envío al que le desea cambiar el estado:"));
-					
-					if (numeroeleccion==envio.getId()) {
-						String [] estados1 = new String [] {
-								"Pendiente de Envio","En proceso","Entregado"	
-							};
-						String estadoactual1 = "";
-						
-						if (envio.getEstado().equals("Pendiente de Envio")) {
-							estadoactual = (String) JOptionPane.showInputDialog(null, "Eliga el estado al que desea actualizar el envío", "Actualización de estado de envío", 0, null, estados1, estados1[0]);
-							envio.setEstado(estadoactual1);
-							JOptionPane.showMessageDialog(null, "El estado del envío correspondiente ya fue actualizado");
-						}
-						else if (envio.getEstado().equals("En proceso")) {
-							estadoactual = (String) JOptionPane.showInputDialog(null, "Eliga el estado al que desea actualizar el envío", "Actualización de estado de envío", 0, null, estados1, estados1[0]);
-							envio.setEstado(estadoactual1);
-							JOptionPane.showMessageDialog(null, "El estado del envío correspondiente ya fue actualizado");
-						}
-												
-						
-					} else {
-						JOptionPane.showMessageDialog(null, "El número de envío que usted escribió no existe");
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "No hay envíos registrados");
-				}
+
 				
 				break;
 						
