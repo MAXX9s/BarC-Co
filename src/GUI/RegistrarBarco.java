@@ -29,8 +29,8 @@ public class RegistrarBarco extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_4;
+	private JTextField textocarga;
+	private JTextField textotarifa;
 	private JDateChooser dateChooser2;
 	private JSpinner hourSpinner;
     private JSpinner minuteSpinner;  
@@ -39,6 +39,17 @@ public class RegistrarBarco extends JFrame {
 
 		RegistrarBarco frame = new RegistrarBarco();
 		frame.setVisible(true);
+	}
+	public boolean solonumeros(String texto){
+		for(int i = 0; i < texto.length(); i++) {
+			if (!Character.isDigit(texto.charAt(i))) {
+				
+			  	contentPane.revalidate();
+                contentPane.repaint();
+                return false;
+			}
+		}
+		return true;
 	}
 
 	public RegistrarBarco() {
@@ -66,10 +77,10 @@ public class RegistrarBarco extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(314, 148, 205, 25);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textocarga = new JTextField();
+		textocarga.setBounds(314, 148, 205, 25);
+		contentPane.add(textocarga);
+		textocarga.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Nombre");
 		lblNewLabel_2.setForeground(new Color(0, 64, 128));
@@ -82,7 +93,19 @@ public class RegistrarBarco extends JFrame {
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel_3.setBounds(89, 214, 174, 12);
 		contentPane.add(lblNewLabel_3);
-		
+        
+        JLabel validaciontarifa = new JLabel("");
+        validaciontarifa.setForeground(new Color(255, 128, 0));
+        validaciontarifa.setFont(new Font("Arial", Font.BOLD, 12));
+        validaciontarifa.setBounds(374, 263, 175, 19);
+        contentPane.add(validaciontarifa);
+        
+        JLabel validacioncarga = new JLabel("");
+        validacioncarga.setForeground(new Color(255, 128, 0));
+        validacioncarga.setFont(new Font("Arial", Font.BOLD, 12));
+        validacioncarga.setBounds(314, 177, 213, 14);
+        contentPane.add(validacioncarga);
+	
 		
 	
 
@@ -92,10 +115,10 @@ public class RegistrarBarco extends JFrame {
 		lblNewLabel_4.setBounds(314, 128, 156, 14);
 		contentPane.add(lblNewLabel_4);
 
-		textField_4 = new JTextField();
-		textField_4.setBounds(374, 236, 145, 25);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		textotarifa = new JTextField();
+		textotarifa.setBounds(374, 236, 145, 25);
+		contentPane.add(textotarifa);
+		textotarifa.setColumns(10);
 
 		JLabel lblNewLabel_7 = new JLabel("Tarifa:");
 		lblNewLabel_7.setForeground(new Color(0, 64, 128));
@@ -121,19 +144,47 @@ public class RegistrarBarco extends JFrame {
 		btnNewButton.setBackground(new Color(0, 64, 128));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean hayerrores = false;
+				if (textocarga.getText().isEmpty()) {
+					validacioncarga.setText("La carga no puede estar vacia");
+					hayerrores = true;
+					
+				}else if (!solonumeros(textocarga.getText())) {
+					validacioncarga.setText("Solo se permiten numeros");
+					hayerrores = true;
+				}else {
+					validacioncarga.setText("");
+				}
+				if (textotarifa.getText().isEmpty()) {
+					validaciontarifa.setText("La tarifa no puede estar vacia");
+					hayerrores = true;
+					
+				}else if (!solonumeros(textotarifa.getText())) {
+					validaciontarifa.setText("Solo se permiten numeros");
+					hayerrores = true;
+				}else {
+					validaciontarifa.setText("");
+				}
 				
-				if (textField.getText().isEmpty() || textField_1.getText().isEmpty() || textField_4.getText().isEmpty() ) {
+				if (textField.getText().isEmpty() || textocarga.getText().isEmpty() || textotarifa.getText().isEmpty() ) {
 					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un envío!!");
+					hayerrores = true;
+				}else{
+					lblNewLabel_5.setText("");
+				}
+				if(hayerrores) {
 	               	contentPane.revalidate();
 	                contentPane.repaint();
-				}else {
+	                return;
+				}
+				
 					
 				   String nombre = textField.getText();
                    Date fechaEntrada = dateChooser2.getDate();
                    int horas = (int) hourSpinner.getValue();
                    int minutos = (int) minuteSpinner.getValue();
-                   int capacidad = Integer.parseInt(textField_1.getText());
-                   double tarifa = Double.parseDouble(textField_4.getText());
+                   int capacidad = Integer.parseInt(textocarga.getText());
+                   double tarifa = Double.parseDouble(textotarifa.getText());
 
                    Barco nuevoBarco = new Barco();
                    nuevoBarco.setNombre(nombre);
@@ -145,7 +196,10 @@ public class RegistrarBarco extends JFrame {
                    
                    if (ControllerBarco.registrarBarco(nuevoBarco)) {
                		
-   					lblNewLabel_8.setText("Envío registrado correctamente!!");
+   					lblNewLabel_8.setText("Barco registrado correctamente!!");
+   					validaciontarifa.setText("");
+   					lblNewLabel_5.setText("");
+   					validacioncarga.setText("");
    					contentPane.revalidate();
    	                contentPane.repaint();	
                       
@@ -153,7 +207,7 @@ public class RegistrarBarco extends JFrame {
                                           }
 			}
 			}
-		});
+		);
 
 		// Crear el segundo JDateChooser
 		
@@ -209,7 +263,8 @@ public class RegistrarBarco extends JFrame {
 	        lblNewLabel_3_1_1.setFont(new Font("Arial", Font.BOLD, 11));
 	        lblNewLabel_3_1_1.setBounds(304, 214, 60, 12);
 	        contentPane.add(lblNewLabel_3_1_1);
-		
+	        
+
 
 	}
 }

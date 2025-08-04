@@ -30,9 +30,9 @@ public class RegistrarEnvio extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
+	private JTextField textodestino;
+	private JTextField textoorigen;
+	private JTextField textoid;
 	private JLabel lblNewLabel_5  = new JLabel("");
 	private JLabel lblNewLabel_8  = new JLabel("");
 	
@@ -43,6 +43,29 @@ public class RegistrarEnvio extends JFrame {
 					frame.setVisible(true);			
 	}
 
+	public boolean solonumeros(String texto){
+		for(int i = 0; i < texto.length(); i++) {
+			if (!Character.isDigit(texto.charAt(i))) {
+				
+			  	contentPane.revalidate();
+                contentPane.repaint();
+                return false;
+			}
+		}
+		return true;
+	}
+	public boolean sololetras(String texto){
+		for(int i = 0; i < texto.length(); i++) {
+			if (!Character.isLetter(texto.charAt(i))) {
+				
+			  	contentPane.revalidate();
+                contentPane.repaint();
+                return false;
+			}
+		}
+		return true;
+	}
+	
 	public RegistrarEnvio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 605, 455);
@@ -68,15 +91,15 @@ public class RegistrarEnvio extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(314, 231, 202, 30);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textodestino = new JTextField();
+		textodestino.setBounds(314, 231, 202, 30);
+		contentPane.add(textodestino);
+		textodestino.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(89, 231, 205, 30);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		textoorigen = new JTextField();
+		textoorigen.setBounds(89, 231, 205, 30);
+		contentPane.add(textoorigen);
+		textoorigen.setColumns(10);
 		
 		
 		JLabel lblNewLabel_2 = new JLabel("Escriba una breve descripción del envio :");
@@ -109,10 +132,10 @@ public class RegistrarEnvio extends JFrame {
 		lblNewLabel_6.setBounds(314, 282, 46, 14);
 		contentPane.add(lblNewLabel_6);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(89, 302, 205, 25);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		textoid = new JTextField();
+		textoid.setBounds(89, 302, 205, 25);
+		contentPane.add(textoid);
+		textoid.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Su ID:");
 		lblNewLabel_7.setForeground(new Color(0, 64, 128));
@@ -132,6 +155,24 @@ public class RegistrarEnvio extends JFrame {
 		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 13));
 		lblNewLabel_8.setBounds(200, 98, 242, 14);
 		contentPane.add(lblNewLabel_8);
+
+		JLabel validacionorigen = new JLabel("");
+		validacionorigen.setForeground(new Color(255, 128, 0));
+		validacionorigen.setFont(new Font("Arial", Font.BOLD, 12));
+		validacionorigen.setBounds(99, 261, 195, 14);
+		contentPane.add(validacionorigen);
+		
+		JLabel validaciondestino = new JLabel("");
+		validaciondestino.setForeground(new Color(255, 128, 0));
+		validaciondestino.setFont(new Font("Arial", Font.BOLD, 12));
+		validaciondestino.setBounds(321, 261, 195, 14);
+		contentPane.add(validaciondestino);
+		
+		JLabel validacionid = new JLabel("");
+		validacionid.setForeground(new Color(255, 128, 0));
+		validacionid.setFont(new Font("Arial", Font.BOLD, 12));
+		validacionid.setBounds(89, 325, 195, 14);
+		contentPane.add(validacionid);
 		
 		
 		
@@ -140,12 +181,52 @@ public class RegistrarEnvio extends JFrame {
 		btnNewButton.setBackground(new Color(0, 64, 128));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if (textField.getText().isEmpty() || textField_2.getText().isEmpty() || textField_1.getText().isEmpty() ) {
-					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un envío!!");
-	               	contentPane.revalidate();
-	                contentPane.repaint();
+				boolean hayerrores = false;
+				if (textoorigen.getText().isEmpty()) {
+					validacionorigen.setText("Debe ingresar el origen");
+					hayerrores = true;
+					
+				}else if (!sololetras(textoorigen.getText())) {
+					validacionorigen.setText("Solo se permiten letras");
+					hayerrores = true;
 				}else {
+					validacionorigen.setText("");
+				}
+				
+				if (textodestino.getText().isEmpty()) {
+					validaciondestino.setText("Debe ingresar el destino");
+					hayerrores = true;
+					
+				}else if (!sololetras(textodestino.getText())) {
+					validaciondestino.setText("Solo se permiten letras");
+					hayerrores = true;
+				}else {
+					validaciondestino.setText("");
+				}
+				
+				if (textoid.getText().isEmpty()) {
+					validacionid.setText("Debes ingresar tu ID");
+					hayerrores = true;
+					
+				}else if (!solonumeros(textoid.getText())) {
+					validacionid.setText("Solo se permiten numeros");
+					hayerrores = true;
+				}else {
+					validacionid.setText("");
+				}
+				
+
+				if (textField.getText().isEmpty() || textoorigen.getText().isEmpty() || textodestino.getText().isEmpty() ) {
+					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un envío!!");
+					hayerrores = true;
+				}else {
+					lblNewLabel_5.setText("");
+				}
+					if(hayerrores) {
+		               	contentPane.revalidate();
+		                contentPane.repaint();
+		                return;
+					}
 					
 					lblNewLabel_8.setText("Envío registrado correctamente!!");
 					contentPane.revalidate();
@@ -155,10 +236,10 @@ public class RegistrarEnvio extends JFrame {
 				Envio envio = new Envio();
 
 				String descripcion = textField.getText();
-        		String origen = textField_2.getText();
-        		String destino = textField_1.getText();
+        		String origen = textoorigen.getText();
+        		String destino = textodestino.getText();
         		String estado = (String) comboBox.getSelectedItem();
-        		int fk = Integer.parseInt(textField_4.getText());
+        		int fk = Integer.parseInt(textoid.getText());
         		int id=0;
         		Envio envionuevo = new Envio(id,descripcion,estado,origen,destino,fk );
         	
@@ -172,7 +253,7 @@ public class RegistrarEnvio extends JFrame {
 			}
 
 			
-		});
+		);
 		
 		
 		
@@ -192,6 +273,7 @@ public class RegistrarEnvio extends JFrame {
 		btnNewButton_1.setBounds(89, 350, 119, 31);
 		contentPane.add(btnNewButton_1);
 		
+
 
 		
 		

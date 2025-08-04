@@ -134,7 +134,7 @@ public class CrearUsuario extends JFrame {
                     return;
                 }
                 
-                if (textField_2.getText().trim().isEmpty()) {
+                if (textField_2.getText().trim().isEmpty() ) {
                     mostrarError("Por favor ingrese la fecha de nacimiento");
                     textField_2.requestFocus();
                     return;

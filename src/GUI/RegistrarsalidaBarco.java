@@ -39,7 +39,7 @@ public class RegistrarsalidaBarco extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField_4;
+	private JTextField textoimp;
 	private JDateChooser dateChooser2;
 	private JSpinner hourSpinner;
     private JSpinner minuteSpinner;  
@@ -51,6 +51,21 @@ public class RegistrarsalidaBarco extends JFrame {
 		RegistrarsalidaBarco frame = new RegistrarsalidaBarco();
 		frame.setVisible(true);
 	}
+	
+	public boolean solonumeros(String texto){
+		for(int i = 0; i < texto.length(); i++) {
+			if (!Character.isDigit(texto.charAt(i))) {
+				
+			  	contentPane.revalidate();
+                contentPane.repaint();
+                return false;
+			}
+		}
+		return true;
+	}
+
+	
+	
 
 	public RegistrarsalidaBarco() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,7 +93,7 @@ public class RegistrarsalidaBarco extends JFrame {
             if (barcoSeleccionado != null) {
                 // Mostrar datos del barco seleccionado
               
-                textField_4.setText(String.valueOf(barcoSeleccionado.getImpuesto()));
+                textoimp.setText(String.valueOf(barcoSeleccionado.getImpuesto()));
             }
         });
         
@@ -102,10 +117,10 @@ public class RegistrarsalidaBarco extends JFrame {
 		lblNewLabel_3.setBounds(89, 214, 174, 12);
 		contentPane.add(lblNewLabel_3);
 
-		textField_4 = new JTextField();
-		textField_4.setBounds(374, 236, 145, 25);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		textoimp = new JTextField();
+		textoimp.setBounds(374, 236, 145, 25);
+		contentPane.add(textoimp);
+		textoimp.setColumns(10);
 
 		JLabel lblNewLabel_7 = new JLabel("Impuesto:");
 		lblNewLabel_7.setForeground(new Color(0, 64, 128));
@@ -118,12 +133,25 @@ public class RegistrarsalidaBarco extends JFrame {
 		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 12));
 		lblNewLabel_5.setBounds(148, 391, 315, 14);
 		contentPane.add(lblNewLabel_5);
-
+			
+        JLabel verificacionbarco = new JLabel("");
+        verificacionbarco.setForeground(new Color(255, 128, 0));
+        verificacionbarco.setFont(new Font("Arial", Font.BOLD, 12));
+        verificacionbarco.setBounds(89, 175, 274, 14);
+        contentPane.add(verificacionbarco);
+        
+        JLabel verificacionimp = new JLabel("");
+        verificacionimp.setForeground(new Color(255, 128, 0));
+        verificacionimp.setFont(new Font("Arial", Font.BOLD, 12));
+        verificacionimp.setBounds(374, 264, 205, 14);
+        contentPane.add(verificacionimp);
+		
+		
 		JLabel lblNewLabel_8 = new JLabel("");
 		lblNewLabel_8.setForeground(new Color(0, 128, 0));
 		lblNewLabel_8.setBackground(new Color(128, 128, 128));
 		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_8.setBounds(178, 313, 242, 14);
+		lblNewLabel_8.setBounds(189, 308, 274, 17);
 		contentPane.add(lblNewLabel_8);
 		
 		
@@ -133,25 +161,53 @@ public class RegistrarsalidaBarco extends JFrame {
 		btnNewButton.setBackground(new Color(0, 64, 128));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (barcoSeleccionado == null || textField_4.getText().isEmpty() ) {
-					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un envío!!");
+				
+				boolean hayerrores = false;
+				if (textoimp.getText().isEmpty()) {
+					verificacionimp.setText("Los impuestos estan vacios");
+					hayerrores = true;
+					
+				}else if (!solonumeros(textoimp.getText())) {
+					verificacionimp.setText("Solo se permiten numeros");
+					hayerrores = true;
+				}else {
+					verificacionimp.setText("");
+				}
+				if (barcoSeleccionado == null ) {
+					verificacionbarco.setText("Debe seleccionar un barco");
+					hayerrores = true;
+				}else {
+					verificacionbarco.setText("");
+				}
+				if ( barcoSeleccionado == null || textoimp.getText().isEmpty()  || textoimp.getText() == null ) {
+					lblNewLabel_5.setText("Debe llenar los campos para poder registrar un Barco!!");
+					lblNewLabel_8.setText("");
 	               	contentPane.revalidate();
 	                contentPane.repaint();
+	                if(hayerrores) {
+		               	contentPane.revalidate();
+		                contentPane.repaint();
+		                return;
+					}
 		        }else {
 				 int horas = (int) hourSpinner.getValue();
 		            int minutos = (int) minuteSpinner.getValue();
-		            double impuesto = Double.parseDouble(textField_4.getText());
+		            double impuesto = Double.parseDouble(textoimp.getText());
 		            
 		            barcoSeleccionado.setFechaSalida(new Date(dateChooser2.getDate().getTime()));
 		            barcoSeleccionado.setHoraSalida(new Time(horas, minutos, 0));
 		            barcoSeleccionado.setImpuesto(impuesto);
 		        
 		            if (ControllerBarco.registrarSalida(barcoSeleccionado)) {
-		                JOptionPane.showMessageDialog(null, "Salida registrada exitosamente");
-		                dispose();
-		                new AdministrarBarcos().setVisible(true);
+		            	
+		            	lblNewLabel_8.setText("Salida registrada exitosamente");
+		            	lblNewLabel_5.setText("");
+		            	verificacionbarco.setText("");
+		            	verificacionimp.setText("");
+		            	contentPane.revalidate();
+	   	                contentPane.repaint();	
 		            } else {
-		                JOptionPane.showMessageDialog(null, "Error al registrar salida");
+		            	
 		            }
 
 			}
@@ -212,6 +268,10 @@ public class RegistrarsalidaBarco extends JFrame {
 	        lblNewLabel_3_1_1.setFont(new Font("Arial", Font.BOLD, 11));
 	        lblNewLabel_3_1_1.setBounds(304, 214, 60, 12);
 	        contentPane.add(lblNewLabel_3_1_1);
+	        
+	
+	        
+
 	}
 	
 	        

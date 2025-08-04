@@ -72,6 +72,8 @@ public class ActualizarEnvio extends JFrame {
         btnNewButton.addActionListener(e -> {
             int filaSeleccionada = table.getSelectedRow();
             if (filaSeleccionada != -1) {
+            	lblErrorSeleccion.setText("");
+
                 	 int ID_Envio = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString()); 
                      String EstadoActual = model.getValueAt(filaSeleccionada, 2).toString(); 
 
